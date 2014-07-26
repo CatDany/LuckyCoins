@@ -4,6 +4,9 @@
 3. Revision: Important changes to a mod
 4. Build: Every time I end working on a mod, also independent 
 
+build 3 of 0.1.0:
+- Much stuff has been added
+
 build 2 of 0.1.0:
 - First mod setup done
 - Added Master Coin

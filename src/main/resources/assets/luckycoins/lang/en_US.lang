@@ -1,2 +1,26 @@
 item.master_coin.name=Master Coin
 item.action_coin.name=Action Coin
+
+gui.main.open_loot_boxes=Open Loot Boxes
+gui.main.shop=Shop
+gui.main.redeem_code=Redeem Code
+gui.shop.buy=Buy
+gui.redeem.enter_code=Enter Code
+gui.redeem.redeem=Redeem
+gui.redeem.wait=Wait...
+gui.back=Back
+
+message.welcome.1=Welcome to a Minecraft world modded with %s!
+message.welcome.2=This mod is about special coins that allow
+message.welcome.3=you to do crazy stuff with them!
+message.welcome.4=But you need to be lucky to get all coins you need
+message.welcome.5=First craft yourselves a Master Coin and then
+message.welcome.6=you'll be able to read more ~ Good Luck!
+
+message.master_coin.1=Nice! You made your first Master Coin.
+message.master_coin.2=Now right click it to open LuckyCoins menu.
+message.master_coin.3=If you want to read more about LuckyCoins,
+message.master_coin.4=Click "Help" in LuckyCoins menu.
+
+message.redeem.success=Successfully redeemed a code (%s boxes)!
+message.redeem.fail=Failed to redeem a code!

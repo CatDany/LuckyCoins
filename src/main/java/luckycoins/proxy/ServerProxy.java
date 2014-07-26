@@ -3,6 +3,7 @@ package luckycoins.proxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.relauncher.Side;
 
 public class ServerProxy implements IProxy
 {
@@ -14,4 +15,10 @@ public class ServerProxy implements IProxy
 	
 	@Override
 	public void postInit(FMLPostInitializationEvent e) {}
+	
+	@Override
+	public Side getSide()
+	{
+		return Side.SERVER;
+	}
 }

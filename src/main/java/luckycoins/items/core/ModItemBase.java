@@ -24,7 +24,7 @@ public class ModItemBase extends Item
 		setCreativeTab(ModCreativeTab.tabMod);
 		
 		this.unlocName = unlocName;
-		GameRegistry.registerItem(this, unlocName);
+		ModItems.items.put(unlocName, this);
 	}
 	
 	@Override
