@@ -1,13 +1,11 @@
 package luckycoins.network.packet;
 
-import net.minecraft.client.gui.GuiSlot;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.util.StatCollector;
 import io.netty.buffer.ByteBuf;
+import luckycoins.core.LuckyCoinsData;
 import luckycoins.misc.Results.EnumResult;
 import luckycoins.network.PacketHandler;
 import luckycoins.network.packet.PacketRedeem.MessageRedeem;
-import cpw.mods.fml.client.GuiSortingProblem;
+import net.minecraft.util.StatCollector;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -25,7 +23,9 @@ public class PacketRedeem implements IMessageHandler<MessageRedeem, IMessage>
 			String code = message.code;
 			int boxes = Integer.parseInt(InternetHelper.readRemoteFile("http://mods.hoppix.ru/Files/remote/LuckyCoins/check.php?key=%s", message.code));
 			EnumResult result = boxes > 0 ? EnumResult.SUCCESS : EnumResult.FAIL;
-			System.out.println(boxes);
+			
+			LuckyCoinsData.get(ctx.getServerHandler().playerEntity).loot_boxes += boxes;
+			
 			PlayerUtils.print(ctx.getServerHandler().playerEntity, 
 					result == EnumResult.SUCCESS
 					? Paragraph.green + StatCollector.translateToLocalFormatted("message.redeem.success", boxes)

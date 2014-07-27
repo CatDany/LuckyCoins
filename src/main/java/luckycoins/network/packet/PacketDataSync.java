@@ -7,17 +7,20 @@ import luckycoins.network.packet.PacketDataSync.MessageDataSync;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import danylibs.PlayerUtils;
 
 public class PacketDataSync implements IMessageHandler<MessageDataSync, IMessage>
 {
 	@Override
 	public IMessage onMessage(MessageDataSync message, MessageContext ctx)
 	{
-		if (ctx.side.isServer() && !message.toClient)
+		if (ctx.side.isServer())
 		{
-			PacketHandler.instance().net.sendTo(new MessageDataSync(LuckyCoinsData.get(ctx.getServerHandler().playerEntity)), ctx.getServerHandler().playerEntity);
+			LuckyCoinsData data = LuckyCoinsData.get(ctx.getServerHandler().playerEntity);
+			IMessage msg = new MessageDataSync(data);
+			PacketHandler.instance().net.sendTo(msg, ctx.getServerHandler().playerEntity);
 		}
-		else if (ctx.side.isClient() && message.toClient)
+		else if (ctx.side.isClient())
 		{
 			LuckyCoinsData.CLIENT_COINS = message.coins;
 			LuckyCoinsData.CLIENT_BOXES = message.boxes;
@@ -27,18 +30,13 @@ public class PacketDataSync implements IMessageHandler<MessageDataSync, IMessage
 	
 	public static class MessageDataSync implements IMessage
 	{
-		private boolean toClient;
 		private int coins;
 		private int boxes;
 		
-		public MessageDataSync()
-		{
-			this.toClient = false;
-		}
+		public MessageDataSync() {}
 		
 		public MessageDataSync(LuckyCoinsData data)
 		{
-			this.toClient = true;
 			this.coins = data.coins;
 			this.boxes = data.loot_boxes;
 		}
@@ -46,7 +44,6 @@ public class PacketDataSync implements IMessageHandler<MessageDataSync, IMessage
 		@Override
 		public void fromBytes(ByteBuf buf)
 		{
-			this.toClient = buf.readBoolean();
 			this.coins = buf.readInt();
 			this.boxes = buf.readInt();
 		}
@@ -54,7 +51,6 @@ public class PacketDataSync implements IMessageHandler<MessageDataSync, IMessage
 		@Override
 		public void toBytes(ByteBuf buf)
 		{
-			buf.writeBoolean(toClient);
 			buf.writeInt(coins);
 			buf.writeInt(boxes);
 		}

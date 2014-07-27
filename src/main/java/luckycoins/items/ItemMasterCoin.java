@@ -24,12 +24,6 @@ public class ItemMasterCoin extends ModItemBase
 	}
 	
 	@Override
-	public void registerIcons(IIconRegister reg)
-	{
-		icons[0] = IconRegHelper.regItem(this, reg);
-	}
-	
-	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world,
 			EntityPlayer player)
 	{

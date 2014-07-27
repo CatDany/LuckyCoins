@@ -6,7 +6,7 @@ build
 dep
 eclipse
 gradle
-raw_textures
+#raw_textures
 #src
 .classpath
 #.gitattributes

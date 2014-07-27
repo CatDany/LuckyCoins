@@ -4,6 +4,11 @@
 3. Revision: Important changes to a mod
 4. Build: Every time I end working on a mod, also independent 
 
+build 4 of 0.1.0:
+- Fixed: GUIs pause game
+- Fixed: LuckyCoins creative tab is empty because it was constructed before pre init
+- Fixed: Buttons aren't clickable because mouseClicked() overridden it
+
 build 3 of 0.1.0:
 - Much stuff has been added
 

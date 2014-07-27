@@ -15,6 +15,7 @@ public class LuckyCoinsData implements IExtendedEntityProperties
 	public int coins;
 	public boolean read_welcome_message;
 	public boolean read_coin_message;
+	public boolean read_greedy_message;
 	
 	public LuckyCoinsData() {}
 	
@@ -24,6 +25,7 @@ public class LuckyCoinsData implements IExtendedEntityProperties
 		this.coins = 0;
 		this.read_welcome_message = false;
 		this.read_coin_message = false;
+		this.read_greedy_message = false;
 	}
 	
 	@Override
@@ -34,6 +36,7 @@ public class LuckyCoinsData implements IExtendedEntityProperties
 		this.coins = data.getInteger("Coins");
 		this.read_welcome_message = data.getBoolean("ReadWelcomeMessage");
 		this.read_coin_message = data.getBoolean("ReadCoinMessage");
+		this.read_greedy_message = data.getBoolean("ReadGreedyMessage");
 	}
 	
 	@Override
@@ -44,6 +47,7 @@ public class LuckyCoinsData implements IExtendedEntityProperties
 		data.setInteger("Coins", coins);
 		data.setBoolean("ReadWelcomeMessage", read_welcome_message);
 		data.setBoolean("ReadCoinMessage", read_coin_message);
+		data.setBoolean("ReadGreedyMessage", read_greedy_message);
 		tag.setTag(Refs.MOD_ID, data);
 	}
 	

@@ -1,5 +1,8 @@
 item.master_coin.name=Master Coin
-item.action_coin.name=Action Coin
+item.action_coin_common.name=Common Coin
+item.action_coin_rare.name=§9Rare Coin§r
+item.action_coin_epic.name=§5Epic Coin§r
+item.action_coin_legendary.name=§6Legendary Coin§r
 
 gui.main.open_loot_boxes=Open Loot Boxes
 gui.main.shop=Shop
@@ -7,7 +10,7 @@ gui.main.redeem_code=Redeem Code
 gui.shop.buy=Buy
 gui.redeem.enter_code=Enter Code
 gui.redeem.redeem=Redeem
-gui.redeem.wait=Wait...
+gui.wait=Wait...
 gui.back=Back
 
 message.welcome.1=Welcome to a Minecraft world modded with %s!
@@ -21,6 +24,9 @@ message.master_coin.1=Nice! You made your first Master Coin.
 message.master_coin.2=Now right click it to open LuckyCoins menu.
 message.master_coin.3=If you want to read more about LuckyCoins,
 message.master_coin.4=Click "Help" in LuckyCoins menu.
+
+message.greedy.1=What!? You've just crafted a Master Coin without
+message.greedy.2=using any gold? You're too greedy, man. TOO greedy.
 
 message.redeem.success=Successfully redeemed a code (%s boxes)!
 message.redeem.fail=Failed to redeem a code!

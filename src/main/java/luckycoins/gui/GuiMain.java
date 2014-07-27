@@ -2,15 +2,13 @@ package luckycoins.gui;
 
 import luckycoins.Refs;
 import luckycoins.core.LuckyCoinsData;
-import luckycoins.network.PacketHandler;
-import luckycoins.network.packet.PacketDataSync;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 
-public class GuiMain extends GuiScreen
+public class GuiMain extends ModGui
 {
 	private static final ResourceLocation texture = new ResourceLocation(Refs.RESLOC + ":" + "textures/gui/sheet1.png");
 	
@@ -31,7 +29,19 @@ public class GuiMain extends GuiScreen
 		
 		mc.renderEngine.bindTexture(texture);
 		drawTexturedModalRect(width / 2 - 70, 40, 0, 0, 32, 32);
-		drawString(fontRendererObj, "" + LuckyCoinsData.CLIENT_COINS, width / 2 - 40, 52, 0xffffff);
+		drawTexturedModalRect(width / 2 + 38, 41, 32, 0, 32, 32);
+		drawString(fontRendererObj, getNumberString(LuckyCoinsData.CLIENT_COINS), width / 2 - 40, 52, 0xffffff);
+		drawString(fontRendererObj, getNumberString(LuckyCoinsData.CLIENT_BOXES), width / 2 + 40 - fontRendererObj.getStringWidth(getNumberString(LuckyCoinsData.CLIENT_BOXES)), 52, 0xffffff);
+	}
+	
+	public static String getNumberString(int number)
+	{
+		String str = number + "";
+		if (number >= 1000000)
+		{
+			str = "999k+";
+		}
+		return str;
 	}
 	
 	@Override
@@ -57,6 +67,7 @@ public class GuiMain extends GuiScreen
 	@Override
 	protected void mouseClicked(int x, int y, int wtf)
 	{
+		super.mouseClicked(x, y, wtf);
 		int minX = width / 2 - 70 + 4;
 		int minY = 40 + 4;
 		int maxX = minX + 32 - 8;

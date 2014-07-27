@@ -7,11 +7,20 @@ import net.minecraft.item.Item;
 
 public class ModCreativeTab extends CreativeTabs
 {
-	public static final ModCreativeTab tabMod = new ModCreativeTab();
+	private static ModCreativeTab tab;
 	
 	public ModCreativeTab()
 	{
 		super(Refs.MOD_NAME);
+	}
+	
+	public static ModCreativeTab tab()
+	{
+		if (tab == null)
+		{
+			tab = new ModCreativeTab();
+		}
+		return tab;
 	}
 	
 	@Override

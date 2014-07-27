@@ -2,20 +2,22 @@ package luckycoins.gui;
 
 import luckycoins.network.PacketHandler;
 import luckycoins.network.packet.PacketRedeem;
+import luckycoins.thread.ThreadDisableGuiButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
-public class GuiRedeem extends GuiScreen
+public class GuiRedeem extends ModGui
 {
 	private GuiTextField field;
 	
 	@Override
 	public void initGui()
 	{
+		Keyboard.enableRepeatEvents(true);
 		buttonList.clear();
 		buttonList.add(new GuiButton(0, width / 2 - 70, 130, 140, 20, GuiRefs.REDEEM));
 		buttonList.add(new GuiButton(1, width / 2 - 70, 160, 140, 20, GuiRefs.BACK));
@@ -69,6 +71,7 @@ public class GuiRedeem extends GuiScreen
 			if (field.getText().matches("[a-zA-Z0-9]{20}"))
 			{
 				PacketHandler.instance().net.sendToServer(new PacketRedeem.MessageRedeem(field.getText()));
+				field.setText("");
 			}
 		}
 		else if (button.id == 1)
@@ -84,5 +87,11 @@ public class GuiRedeem extends GuiScreen
 		super.keyTyped(par1, par2);
 		
 		field.textboxKeyTyped(par1, par2);
+	}
+	
+	@Override
+	public void onGuiClosed()
+	{
+		Keyboard.enableRepeatEvents(false);
 	}
 }

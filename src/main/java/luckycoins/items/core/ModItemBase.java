@@ -2,6 +2,7 @@ package luckycoins.items.core;
 
 import java.util.List;
 
+import luckycoins.Refs;
 import luckycoins.misc.ModCreativeTab;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -13,15 +14,13 @@ import danylibs.IconRegHelper;
 
 public class ModItemBase extends Item
 {
-	protected IIcon[] icons = new IIcon[16];
-	protected int subItems = 1;
 	private final String unlocName; 
 	
 	public ModItemBase(String unlocName)
 	{
 		super();
 		setUnlocalizedName(unlocName);
-		setCreativeTab(ModCreativeTab.tabMod);
+		setCreativeTab(ModCreativeTab.tab());
 		
 		this.unlocName = unlocName;
 		ModItems.items.put(unlocName, this);
@@ -30,32 +29,7 @@ public class ModItemBase extends Item
 	@Override
 	public void registerIcons(IIconRegister reg)
 	{
-		icons[0] = IconRegHelper.regItem(this, reg);
-		if (getHasSubtypes())
-		{
-			for (int i = 1; i < subItems; i++)
-			{
-				icons[i] = IconRegHelper.regItem(this, reg, "" + i);
-			}
-		}
-	}
-	
-	@Override
-	public IIcon getIconFromDamage(int meta)
-	{
-		return getHasSubtypes() ? icons[meta] : icons[0];
-	}
-	
-	@Override
-	public void getSubItems(Item item, CreativeTabs tab, List list)
-	{
-		if (getHasSubtypes())
-		{
-			for (int i = 0; i < subItems; i++)
-			{
-				list.add(new ItemStack(item, 1, i));
-			}
-		}
+		itemIcon = reg.registerIcon(Refs.RESLOC + ":" + unlocName);
 	}
 	
 	@Override

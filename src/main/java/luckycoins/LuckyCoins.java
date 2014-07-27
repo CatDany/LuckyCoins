@@ -1,10 +1,12 @@
 package luckycoins;
 
 import luckycoins.blocks.core.ModBlocks;
+import luckycoins.event.EventClient;
 import luckycoins.event.EventPlayer;
 import luckycoins.items.core.ModItems;
 import luckycoins.network.PacketHandler;
 import luckycoins.proxy.IProxy;
+import luckycoins.recipes.Recipes;
 
 import org.apache.logging.log4j.Logger;
 
@@ -16,6 +18,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.relauncher.Side;
 import danylibs.EventBusHelper;
 
 @Mod
@@ -47,16 +50,17 @@ public class LuckyCoins
 	{
 		ModBlocks.initBlocks();
 		ModItems.initItems();
+		Recipes.initRecipes();
 		
 		PacketHandler.instance().init();
 		EventBusHelper.checkBusAndRegister(new EventPlayer());
-		
+		EventBusHelper.checkBusAndRegister(new EventClient());
 	}
 	
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent e)
 	{
-		//
+		Recipes.postInitOreDictNames();
 	}
 	
 	@EventHandler
