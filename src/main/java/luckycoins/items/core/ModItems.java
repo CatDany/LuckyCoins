@@ -4,17 +4,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import luckycoins.items.ItemMasterCoin;
-import net.minecraft.item.Item;
 
 public class ModItems
 {
-	public static Item master_coin;
-	
 	public static void initItems()
 	{
-		master_coin = new ItemMasterCoin("master_coin");
-		
 		registerItems();
 	}
 	

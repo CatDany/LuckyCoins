@@ -3,6 +3,7 @@ package luckycoins.misc;
 import luckycoins.Refs;
 import luckycoins.items.core.ModItems;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
 public class ModCreativeTab extends CreativeTabs
@@ -32,6 +33,6 @@ public class ModCreativeTab extends CreativeTabs
 	@Override
 	public Item getTabIconItem()
 	{
-		return ModItems.master_coin;
+		return Items.gold_nugget;
 	}
 }

@@ -4,6 +4,7 @@ import luckycoins.blocks.core.ModBlocks;
 import luckycoins.event.EventClient;
 import luckycoins.event.EventPlayer;
 import luckycoins.items.core.ModItems;
+import luckycoins.misc.KeybindHandler;
 import luckycoins.network.PacketHandler;
 import luckycoins.proxy.IProxy;
 import luckycoins.recipes.Recipes;
@@ -37,6 +38,7 @@ public class LuckyCoins
 	public static IProxy proxy;
 	
 	public static Logger logger;
+	public static final KeybindHandler keybinds = new KeybindHandler();
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e)
@@ -53,6 +55,7 @@ public class LuckyCoins
 		Recipes.initRecipes();
 		
 		PacketHandler.instance().init();
+		keybinds.initKeybindings();
 		EventBusHelper.checkBusAndRegister(new EventPlayer());
 		EventBusHelper.checkBusAndRegister(new EventClient());
 	}

@@ -1,5 +1,7 @@
 package luckycoins.event;
 
+import org.lwjgl.input.Keyboard;
+
 import luckycoins.LuckyCoins;
 import luckycoins.Refs;
 import luckycoins.core.LuckyCoinsData;
@@ -28,7 +30,7 @@ public class EventPlayer
 			PlayerUtils.print(e.player, Paragraph.cyan + MessageRefs.WELCOME_2);
 			PlayerUtils.print(e.player, Paragraph.cyan + MessageRefs.WELCOME_3);
 			PlayerUtils.print(e.player, Paragraph.cyan + MessageRefs.WELCOME_4);
-			PlayerUtils.print(e.player, Paragraph.cyan + MessageRefs.WELCOME_5);
+			PlayerUtils.print(e.player, Paragraph.cyan + String.format(MessageRefs.WELCOME_5, Keyboard.getKeyName(LuckyCoins.keybinds.keyGui.getKeyCode())));
 			PlayerUtils.print(e.player, Paragraph.cyan + MessageRefs.WELCOME_6);
 			
 			LuckyCoinsData.get(e.player).read_welcome_message = true;
@@ -54,45 +56,6 @@ public class EventPlayer
 	{
 		if (e.player.worldObj.isRemote)
 			return;
-		
-		if (ItemUtils.compare(e.crafting.getItem(), ModItems.master_coin))
-		{
-			if (!LuckyCoinsData.get(e.player).read_coin_message)
-			{
-				PlayerUtils.print(e.player, Paragraph.cyan + MessageRefs.MASTER_COIN_1);
-				PlayerUtils.print(e.player, Paragraph.cyan + MessageRefs.MASTER_COIN_2);
-				PlayerUtils.print(e.player, Paragraph.cyan + MessageRefs.MASTER_COIN_3);
-				PlayerUtils.print(e.player, Paragraph.cyan + MessageRefs.MASTER_COIN_4);
-				
-				boolean isGreedy = false;
-				
-				LuckyCoinsData.get(e.player).read_coin_message = true;
-				LuckyCoins.logger.info("Shown master coin message to " + e.player.getCommandSenderName());
-			}
-			if (!LuckyCoinsData.get(e.player).read_greedy_message)
-			{
-				boolean isGreedy = true;
-				for (int i = 0; i < 9; i++)
-				{
-					if (i == 4)
-					{
-						continue;
-					}
-					if (ItemUtils.compare(e.craftMatrix.getStackInSlot(i).getItem(), Items.gold_nugget))
-					{
-						isGreedy = false;
-					}
-				}
-				if (isGreedy)
-				{
-					PlayerUtils.print(e.player, Paragraph.gold + MessageRefs.GREEDY_1);
-					PlayerUtils.print(e.player, Paragraph.gold + MessageRefs.GREEDY_2);
-					
-					LuckyCoinsData.get(e.player).read_greedy_message = true;
-					LuckyCoins.logger.info("Shown greedy message to " + e.player.getCommandSenderName());
-				}
-			}
-		}
 	}
 	
 	private static class MessageRefs

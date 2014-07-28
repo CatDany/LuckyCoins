@@ -4,6 +4,10 @@
 3. Revision: Important changes to a mod
 4. Build: Whenever I end working on a mod (e.g. every day). Also independent 
 
+build 5 of 0.1.0:
+- Keybinding for GUI is implemented
+- Got rid of Master Coin
+
 build 4 of 0.1.0:
 - Redeem Code in menu is done
 - Fixed: GUIs pause game

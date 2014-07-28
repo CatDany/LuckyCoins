@@ -20,20 +20,12 @@ public class Recipes
 	
 	public static void postInitOreDictNames()
 	{
-		Item tconMaterial;
-		if (Loader.isModLoaded("TConstruct") && (tconMaterial = GameRegistry.findItem("TConstruct", "materials")) != null)
-		{
-			ItemStack stackAlubrass = new ItemStack(tconMaterial, 1, 15);
-			OreDictionary.registerOre("nuggetGold", stackAlubrass);
-		}
+		//
 	}
 	
 	public static void initRecipes()
 	{
-		addOreRecipe(ModItems.master_coin, 1, 0,
-				"nnn", "nen", "nnn",
-				'n', "nuggetGold",
-				'e', Items.emerald);
+		//
 	}
 	
 	private static void addOreRecipe(ItemStack output, Object... recipe)
