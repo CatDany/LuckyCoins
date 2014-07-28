@@ -2,9 +2,10 @@
 1. Major: Huge change to a mod
 2. Minor: Major Minecraft update
 3. Revision: Important changes to a mod
-4. Build: Every time I end working on a mod, also independent 
+4. Build: Whenever I end working on a mod (e.g. every day). Also independent 
 
 build 4 of 0.1.0:
+- Redeem Code in menu is done
 - Fixed: GUIs pause game
 - Fixed: LuckyCoins creative tab is empty because it was constructed before pre init
 - Fixed: Buttons aren't clickable because mouseClicked() overridden it
