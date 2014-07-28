@@ -4,6 +4,9 @@ import org.lwjgl.input.Keyboard;
 
 import luckycoins.LuckyCoins;
 import luckycoins.Refs;
+import luckycoins.core.DailyQuest;
+import luckycoins.core.DailyQuestData;
+import luckycoins.core.DailyQuestHandler;
 import luckycoins.core.LuckyCoinsData;
 import luckycoins.items.core.ModItems;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,6 +15,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
 import danylibs.ItemUtils;
 import danylibs.Paragraph;
 import danylibs.PlayerUtils;
@@ -58,6 +62,21 @@ public class EventPlayer
 			return;
 	}
 	
+	public void playerTick(TickEvent.PlayerTickEvent e)
+	{
+		if (e.player.worldObj.isRemote)
+			return;
+		
+		LuckyCoinsData data = LuckyCoinsData.get(e.player);
+		
+		if (!data.dailyData.date.equals(DailyQuestHandler.getFormattedDate()))
+		{
+			data.dailyData = new DailyQuestData(LuckyCoins.quests.getCurrentDailyQuest());
+			PlayerUtils.print(e.player, Paragraph.gold + MessageRefs.DAILY_QUEST_CHANGED_1);
+			PlayerUtils.print(e.player, Paragraph.gold + MessageRefs.DAILY_QUEST_CHANGED_2);
+		}
+	}
+	
 	private static class MessageRefs
 	{
 		public static final String WELCOME_1 = StatCollector.translateToLocal("message.welcome.1");
@@ -67,12 +86,7 @@ public class EventPlayer
 		public static final String WELCOME_5 = StatCollector.translateToLocal("message.welcome.5");
 		public static final String WELCOME_6 = StatCollector.translateToLocal("message.welcome.6");
 		
-		public static final String MASTER_COIN_1 = StatCollector.translateToLocal("message.master_coin.1");
-		public static final String MASTER_COIN_2 = StatCollector.translateToLocal("message.master_coin.2");
-		public static final String MASTER_COIN_3 = StatCollector.translateToLocal("message.master_coin.3");
-		public static final String MASTER_COIN_4 = StatCollector.translateToLocal("message.master_coin.4");
-		
-		public static final String GREEDY_1 = StatCollector.translateToLocal("message.greedy.1");
-		public static final String GREEDY_2 = StatCollector.translateToLocal("message.greedy.2");
+		public static final String DAILY_QUEST_CHANGED_1 = StatCollector.translateToLocal("message.daily_quest_changed.1");
+		public static final String DAILY_QUEST_CHANGED_2 = StatCollector.translateToLocal("message.daily_quest_changed.2");
 	}
 }

@@ -2,47 +2,38 @@ package luckycoins.core;
 
 import java.util.ArrayList;
 
+import luckycoins.LuckyCoins;
+import net.minecraft.client.Minecraft;
 import net.minecraft.util.StatCollector;
 
-public enum DailyQuest
+public class DailyQuest
 {
-	PLAYER_KILL(0, 3);
-	
+	public final int index;
+	public final String name;
 	public final int reward;
 	public final int max;
 	
-	private static final ArrayList<DailyQuest> list = new ArrayList<DailyQuest>();
-	
-	public static int getQuestsNumber()
+	protected DailyQuest(String name, int reward, int max)
 	{
-		return list.size();
-	}
-	
-	public static DailyQuest getQuest(int index)
-	{
-		return list.get(index);
-	}
-	
-	private DailyQuest(int reward, int max)
-	{
+		this.index = DailyQuestHandler.getNextFreeDailyQuestIndex();
+		this.name = name;
 		this.reward = reward;
 		this.max = max;
-		addToList();
-		System.out.println(toString());
 	}
 	
-	private void addToList()
+	@Override
+	public String toString()
 	{
-		list.add(this);
+		return name;
 	}
 	
 	public String getTranslatedQuestName()
 	{
-		return StatCollector.translateToLocal("quest.");
+		return StatCollector.translateToLocal("quest." + name + ".name");
 	}
 	
 	public String getTranslatedQuestDescription()
 	{
-		return StatCollector.translateToLocal("quest.");
+		return StatCollector.translateToLocal("quest." + name + ".desc");
 	}
 }

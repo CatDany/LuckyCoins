@@ -1,6 +1,7 @@
 package luckycoins;
 
 import luckycoins.blocks.core.ModBlocks;
+import luckycoins.core.DailyQuestHandler;
 import luckycoins.event.EventClient;
 import luckycoins.event.EventPlayer;
 import luckycoins.items.core.ModItems;
@@ -39,11 +40,14 @@ public class LuckyCoins
 	
 	public static Logger logger;
 	public static final KeybindHandler keybinds = new KeybindHandler();
+	public static final DailyQuestHandler quests = new DailyQuestHandler();
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e)
 	{
 		logger = e.getModLog();
+		Configuration.init(e.getSuggestedConfigurationFile());
+		Configuration.reloadConfiguration();
 		proxy.preInit(e);
 	}
 	

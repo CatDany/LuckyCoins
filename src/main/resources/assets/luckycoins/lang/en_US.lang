@@ -24,5 +24,13 @@ message.welcome.4=But you need to be lucky to get all coins you need
 message.welcome.5=First craft yourselves a Master Coin and then
 message.welcome.6=you'll be able to read more ~ Good Luck!
 
+message.daily_quest_changed.1=LuckyCoins Daily Quest just got changed!
+message.daily_quest_changed.2=Hit %s to see new quest.
+
 message.redeem.success=Successfully redeemed a code (%s boxes)!
 message.redeem.fail=Failed to redeem a code!
+
+quest.PLAYER_KILL.name=Triple Kill
+quest.PLAYER_KILL.desc=Kill 3 players
+quest.ZOMBIE_HEAL.name=Oh, Poor Zombie!
+quest.ZOMBIE_HEAL.desc=Heal Zombie Villager and transform him into a regular Villager

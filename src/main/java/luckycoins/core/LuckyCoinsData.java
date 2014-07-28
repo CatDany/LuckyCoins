@@ -1,5 +1,6 @@
 package luckycoins.core;
 
+import luckycoins.LuckyCoins;
 import luckycoins.Refs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,6 +12,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class LuckyCoinsData implements IExtendedEntityProperties
 {
+	public DailyQuestData dailyData;
 	public int loot_boxes;
 	public int coins;
 	public boolean read_welcome_message;
@@ -26,6 +28,7 @@ public class LuckyCoinsData implements IExtendedEntityProperties
 		this.read_welcome_message = false;
 		this.read_coin_message = false;
 		this.read_greedy_message = false;
+		this.dailyData = new DailyQuestData(LuckyCoins.quests.getCurrentDailyQuest());
 	}
 	
 	@Override
@@ -37,6 +40,10 @@ public class LuckyCoinsData implements IExtendedEntityProperties
 		this.read_welcome_message = data.getBoolean("ReadWelcomeMessage");
 		this.read_coin_message = data.getBoolean("ReadCoinMessage");
 		this.read_greedy_message = data.getBoolean("ReadGreedyMessage");
+		
+		NBTTagCompound dailyDataTag = new NBTTagCompound();
+		dailyData.readFromNBT(dailyDataTag);
+		tag.setTag("DailyQuestsData", dailyDataTag);
 	}
 	
 	@Override
@@ -49,6 +56,9 @@ public class LuckyCoinsData implements IExtendedEntityProperties
 		data.setBoolean("ReadCoinMessage", read_coin_message);
 		data.setBoolean("ReadGreedyMessage", read_greedy_message);
 		tag.setTag(Refs.MOD_ID, data);
+		
+		NBTTagCompound dailyDataTag = tag.getCompoundTag("DailyQuestsData");
+		dailyData.writeToNBT(dailyDataTag);
 	}
 	
 	@Override
