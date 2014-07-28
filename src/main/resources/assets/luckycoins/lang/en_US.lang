@@ -7,14 +7,22 @@ item.action_coin_legendary.name=§6Legendary Coin§r
 gui.main.open_loot_boxes=Open Loot Boxes
 gui.main.shop=Shop
 gui.main.redeem_code=Redeem Code
-gui.shop.buy=Buy
+gui.shop.buy=Buy %s Loot Boxes
+gui.shop.buy_one=Buy %s Loot Box
+gui.shop.free=Get Free Loot Boxes
+gui.shop.not_enough_gold=Not Enough Gold!
 gui.redeem.enter_code=Enter Code
 gui.redeem.redeem=Redeem
+gui.your_stats=---- Your Stats ----
 gui.wait=Wait...
 gui.back=Back
 
-message.greedy.1=What!? You've just crafted a Master Coin without
-message.greedy.2=using any gold? You're too greedy, man. TOO greedy.
+message.welcome.1=Welcome to a Minecraft world modded with %s!
+message.welcome.2=This mod is about special coins that allow
+message.welcome.3=you to do crazy stuff with them!
+message.welcome.4=But you need to be lucky to get all coins you need
+message.welcome.5=First craft yourselves a Master Coin and then
+message.welcome.6=you'll be able to read more ~ Good Luck!
 
 message.redeem.success=Successfully redeemed a code (%s boxes)!
 message.redeem.fail=Failed to redeem a code!

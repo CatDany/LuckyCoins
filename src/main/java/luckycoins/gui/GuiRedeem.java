@@ -1,11 +1,16 @@
 package luckycoins.gui;
 
+import luckycoins.core.LuckyCoinsData;
 import luckycoins.network.PacketHandler;
 import luckycoins.network.packet.PacketRedeem;
 import luckycoins.thread.ThreadDisableGuiButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
+import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.ChatStyle;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StringUtils;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
@@ -17,6 +22,7 @@ public class GuiRedeem extends ModGui
 	@Override
 	public void initGui()
 	{
+		super.initGui();
 		Keyboard.enableRepeatEvents(true);
 		buttonList.clear();
 		buttonList.add(new GuiButton(0, width / 2 - 70, 130, 140, 20, GuiRefs.REDEEM));
@@ -41,6 +47,19 @@ public class GuiRedeem extends ModGui
 		super.drawScreen(par1, par2, par3);
 		drawCenteredString(fontRendererObj, GuiRefs.ENTER_CODE, width / 2, 70, 0xffffff);
 		drawField(field, "");
+		
+		mc.renderEngine.bindTexture(GuiMain.texture);
+		drawTexturedModalRect(width / 2 - 70, 40, 0, 0, 32, 32);
+		drawTexturedModalRect(width / 2 + 38, 41, 32, 0, 32, 32);
+		drawCenteredString(fontRendererObj, GuiRefs.YOUR_STATS, width / 2, 35, 0xffffff);
+		drawString(fontRendererObj, GuiMain.getNumberString(LuckyCoinsData.CLIENT_COINS), width / 2 - 40, 52, 0xffffff);
+		drawString(fontRendererObj, GuiMain.getNumberString(LuckyCoinsData.CLIENT_BOXES), width / 2 + 40 - fontRendererObj.getStringWidth(GuiMain.getNumberString(LuckyCoinsData.CLIENT_BOXES)), 52, 0xffffff);
+		
+		// TODO Fix glitching rectangles
+		if (!StringUtils.isNullOrEmpty(field.getSelectedText()))
+		{
+			drawCenteredString(fontRendererObj, "Please, do not report this glitch.", width / 2, 110, 0xffffff);
+		}
 	}
 	
 	/**
@@ -72,6 +91,10 @@ public class GuiRedeem extends ModGui
 			{
 				PacketHandler.instance().net.sendToServer(new PacketRedeem.MessageRedeem(field.getText()));
 				field.setText("");
+			}
+			else
+			{
+				mc.thePlayer.addChatMessage(new ChatComponentTranslation("message.redeem.fail").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.RED)));
 			}
 		}
 		else if (button.id == 1)

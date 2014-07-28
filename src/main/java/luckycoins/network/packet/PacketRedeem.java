@@ -1,6 +1,7 @@
 package luckycoins.network.packet;
 
 import io.netty.buffer.ByteBuf;
+import luckycoins.LuckyCoins;
 import luckycoins.core.LuckyCoinsData;
 import luckycoins.misc.Results.EnumResult;
 import luckycoins.network.PacketHandler;
@@ -21,7 +22,15 @@ public class PacketRedeem implements IMessageHandler<MessageRedeem, IMessage>
 		if (ctx.side.isServer())
 		{
 			String code = message.code;
-			int boxes = Integer.parseInt(InternetHelper.readRemoteFile("http://mods.hoppix.ru/Files/remote/LuckyCoins/check.php?key=%s", message.code));
+			int boxes = 0;
+			try
+			{
+				boxes = Integer.parseInt(InternetHelper.readRemoteFile("http://mods.hoppix.ru/Files/remote/LuckyCoins/check.php?key=%s", message.code));
+			}
+			catch (NumberFormatException t)
+			{
+				LuckyCoins.logger.warn("Failed to redeem a code because server's response is invalid!");
+			}
 			EnumResult result = boxes > 0 ? EnumResult.SUCCESS : EnumResult.FAIL;
 			
 			LuckyCoinsData.get(ctx.getServerHandler().playerEntity).loot_boxes += boxes;

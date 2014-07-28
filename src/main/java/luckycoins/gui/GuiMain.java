@@ -2,6 +2,8 @@ package luckycoins.gui;
 
 import luckycoins.Refs;
 import luckycoins.core.LuckyCoinsData;
+import luckycoins.network.PacketHandler;
+import luckycoins.network.packet.PacketDataSync;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.GuiButton;
@@ -10,15 +12,19 @@ import net.minecraft.util.ResourceLocation;
 
 public class GuiMain extends ModGui
 {
-	private static final ResourceLocation texture = new ResourceLocation(Refs.RESLOC + ":" + "textures/gui/sheet1.png");
+	public static final ResourceLocation texture = new ResourceLocation(Refs.RESLOC + ":" + "textures/gui/sheet1.png");
 	
 	@Override
 	public void initGui()
 	{
+		super.initGui();
 		buttonList.clear();
 		buttonList.add(new GuiButton(0, width / 2 - 70, 80, 140, 20, GuiRefs.OPEN_LOOT_BOXES));
 		buttonList.add(new GuiButton(1, width / 2 - 70, 110, 140, 20, GuiRefs.SHOP));
 		buttonList.add(new GuiButton(2, width / 2 - 70, 140, 140, 20, GuiRefs.REDEEM_CODE));
+		
+		// Fix of flashing rectangles
+		buttonList.add(new GuiButton(99, 0, 0, 0, 0, ""));
 	}
 	
 	@Override
@@ -30,6 +36,7 @@ public class GuiMain extends ModGui
 		mc.renderEngine.bindTexture(texture);
 		drawTexturedModalRect(width / 2 - 70, 40, 0, 0, 32, 32);
 		drawTexturedModalRect(width / 2 + 38, 41, 32, 0, 32, 32);
+		drawCenteredString(fontRendererObj, GuiRefs.YOUR_STATS, width / 2, 35, 0xffffff);
 		drawString(fontRendererObj, getNumberString(LuckyCoinsData.CLIENT_COINS), width / 2 - 40, 52, 0xffffff);
 		drawString(fontRendererObj, getNumberString(LuckyCoinsData.CLIENT_BOXES), width / 2 + 40 - fontRendererObj.getStringWidth(getNumberString(LuckyCoinsData.CLIENT_BOXES)), 52, 0xffffff);
 	}
@@ -55,7 +62,7 @@ public class GuiMain extends ModGui
 		else if (button.id == 1)
 			/** SHOP **/
 		{
-			//Minecraft.getMinecraft().displayGuiScreen(new GuiShop());
+			Minecraft.getMinecraft().displayGuiScreen(new GuiShop());
 		}
 		else if (button.id == 2)
 			/** REDEEM_CODE **/

@@ -2,6 +2,7 @@ package luckycoins.network;
 
 import io.netty.buffer.ByteBuf;
 import luckycoins.Refs;
+import luckycoins.network.packet.PacketBuyBox;
 import luckycoins.network.packet.PacketDataSync;
 import luckycoins.network.packet.PacketRedeem;
 import luckycoins.network.packet.PacketResult;
@@ -23,6 +24,7 @@ public class PacketHandler
 		helper.registerMessage(0, PacketRedeem.class, PacketRedeem.MessageRedeem.class);
 		helper.registerMessage(1, PacketResult.class, PacketResult.MessageResult.class);
 		helper.registerMessage(2, PacketDataSync.class, PacketDataSync.MessageDataSync.class);
+		helper.registerMessage(3, PacketBuyBox.class, PacketBuyBox.MessageBuyBox.class);
 	}
 	
 	public static PacketHandler instance()
