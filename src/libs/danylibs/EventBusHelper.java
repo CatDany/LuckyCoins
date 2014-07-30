@@ -11,6 +11,9 @@ public class EventBusHelper
 {
 	public static void register(Object eventHandler, EventBusType type)
 	{
+		if (type == null)
+			return;
+		
 		switch (type)
 		{
 		case FORGE:

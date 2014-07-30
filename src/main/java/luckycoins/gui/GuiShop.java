@@ -92,18 +92,4 @@ public class GuiShop extends ModGui
 			Minecraft.getMinecraft().displayGuiScreen(new GuiMain());
 		}
 	}
-	
-	@Override
-	protected void mouseClicked(int x, int y, int wtf)
-	{
-		super.mouseClicked(x, y, wtf);
-		int minX = width / 2 - 70 + 4;
-		int minY = 40 + 4;
-		int maxX = minX + 32 - 8;
-		int maxY = minY + 32 - 8;
-		if (x > minX && y > minY && x < maxX && y < maxY)
-		{
-			mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("random.orb"), 1.0F));
-		}
-	}
 }

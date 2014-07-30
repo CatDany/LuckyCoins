@@ -4,6 +4,10 @@
 3. Revision: Important changes to a mod
 4. Build: Whenever I end working on a mod (e.g. every day). Also independent 
 
+build 6 of 0.1.0:
+- Daily Quests core is implemented
+- Added 'general.TimeZone' configuration option (default is 'GMT+4:00'), required on the server
+
 build 5 of 0.1.0:
 - Keybinding for GUI is implemented
 - Got rid of Master Coin

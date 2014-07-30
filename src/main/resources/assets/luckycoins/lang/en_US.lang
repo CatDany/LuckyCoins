@@ -7,6 +7,8 @@ item.action_coin_legendary.name=§6Legendary Coin§r
 gui.main.open_loot_boxes=Open Loot Boxes
 gui.main.shop=Shop
 gui.main.redeem_code=Redeem Code
+gui.main.daily_quests=Daily Quests
+gui.main.help=Help
 gui.shop.buy=Buy %s Loot Boxes
 gui.shop.buy_one=Buy %s Loot Box
 gui.shop.free=Get Free Loot Boxes
@@ -21,11 +23,15 @@ message.welcome.1=Welcome to a Minecraft world modded with %s!
 message.welcome.2=This mod is about special coins that allow
 message.welcome.3=you to do crazy stuff with them!
 message.welcome.4=But you need to be lucky to get all coins you need
-message.welcome.5=First craft yourselves a Master Coin and then
-message.welcome.6=you'll be able to read more ~ Good Luck!
+message.welcome.5=First hit %s and then you'll be
+message.welcome.6=able to read more ~ Good Luck!
 
 message.daily_quest_changed.1=LuckyCoins Daily Quest just got changed!
 message.daily_quest_changed.2=Hit %s to see new quest.
+
+message.daily_quest_completed.1=You've completed LuckyCoins Daily Quest!
+# this message is also used in gui.daily_quests
+message.daily_quest_completed.2=Reward: %s gold
 
 message.redeem.success=Successfully redeemed a code (%s boxes)!
 message.redeem.fail=Failed to redeem a code!
@@ -34,3 +40,7 @@ quest.PLAYER_KILL.name=Triple Kill
 quest.PLAYER_KILL.desc=Kill 3 players
 quest.ZOMBIE_HEAL.name=Oh, Poor Zombie!
 quest.ZOMBIE_HEAL.desc=Heal Zombie Villager and transform him into a regular Villager
+quest.HARVESTER.name=Great Farmer
+quest.HARVESTER.desc=Harvest 50 wheat, potatoes or carrots
+quest.KNOCKDOWN.name=Knockdown
+quest.KNOCKDOWN.desc=Deal 150 damage to enemy mobs

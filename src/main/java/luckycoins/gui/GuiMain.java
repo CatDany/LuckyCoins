@@ -1,14 +1,16 @@
 package luckycoins.gui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import luckycoins.Refs;
 import luckycoins.core.LuckyCoinsData;
-import luckycoins.network.PacketHandler;
-import luckycoins.network.packet.PacketDataSync;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import danylibs.InternetHelper;
+import danylibs.Paragraph;
 
 public class GuiMain extends ModGui
 {
@@ -22,6 +24,8 @@ public class GuiMain extends ModGui
 		buttonList.add(new GuiButton(0, width / 2 - 70, 80, 140, 20, GuiRefs.OPEN_LOOT_BOXES));
 		buttonList.add(new GuiButton(1, width / 2 - 70, 110, 140, 20, GuiRefs.SHOP));
 		buttonList.add(new GuiButton(2, width / 2 - 70, 140, 140, 20, GuiRefs.REDEEM_CODE));
+		buttonList.add(new GuiButton(3, width / 2 - 70, 170, 140, 20, GuiRefs.DAILY_QUESTS));
+		buttonList.add(new GuiButton(4, width - 60, 5, 55, 20, GuiRefs.HELP));		
 		
 		// Fix of flashing rectangles
 		buttonList.add(new GuiButton(99, 0, 0, 0, 0, ""));
@@ -68,6 +72,16 @@ public class GuiMain extends ModGui
 			/** REDEEM_CODE **/
 		{
 			Minecraft.getMinecraft().displayGuiScreen(new GuiRedeem());
+		}
+		else if (button.id == 3)
+			/** REDEEM_CODE **/
+		{
+			Minecraft.getMinecraft().displayGuiScreen(new GuiDailyQuest());
+		}
+		else if (button.id == 4)
+			/** HELP **/
+		{
+			InternetHelper.openWebpage("http://mods.hoppix.ru/Files/LuckyCoins/help.html");
 		}
 	}
 	

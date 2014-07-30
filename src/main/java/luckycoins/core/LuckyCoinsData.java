@@ -16,8 +16,6 @@ public class LuckyCoinsData implements IExtendedEntityProperties
 	public int loot_boxes;
 	public int coins;
 	public boolean read_welcome_message;
-	public boolean read_coin_message;
-	public boolean read_greedy_message;
 	
 	public LuckyCoinsData() {}
 	
@@ -26,8 +24,6 @@ public class LuckyCoinsData implements IExtendedEntityProperties
 		this.loot_boxes = 0;
 		this.coins = 0;
 		this.read_welcome_message = false;
-		this.read_coin_message = false;
-		this.read_greedy_message = false;
 		this.dailyData = new DailyQuestData(LuckyCoins.quests.getCurrentDailyQuest());
 	}
 	
@@ -38,12 +34,9 @@ public class LuckyCoinsData implements IExtendedEntityProperties
 		this.loot_boxes = data.getInteger("LootBoxes");
 		this.coins = data.getInteger("Coins");
 		this.read_welcome_message = data.getBoolean("ReadWelcomeMessage");
-		this.read_coin_message = data.getBoolean("ReadCoinMessage");
-		this.read_greedy_message = data.getBoolean("ReadGreedyMessage");
 		
-		NBTTagCompound dailyDataTag = new NBTTagCompound();
+		NBTTagCompound dailyDataTag = data.getCompoundTag("DailyQuestsData");
 		dailyData.readFromNBT(dailyDataTag);
-		tag.setTag("DailyQuestsData", dailyDataTag);
 	}
 	
 	@Override
@@ -53,12 +46,11 @@ public class LuckyCoinsData implements IExtendedEntityProperties
 		data.setInteger("LootBoxes", loot_boxes);
 		data.setInteger("Coins", coins);
 		data.setBoolean("ReadWelcomeMessage", read_welcome_message);
-		data.setBoolean("ReadCoinMessage", read_coin_message);
-		data.setBoolean("ReadGreedyMessage", read_greedy_message);
 		tag.setTag(Refs.MOD_ID, data);
 		
-		NBTTagCompound dailyDataTag = tag.getCompoundTag("DailyQuestsData");
+		NBTTagCompound dailyDataTag = new NBTTagCompound();
 		dailyData.writeToNBT(dailyDataTag);
+		data.setTag("DailyQuestsData", dailyDataTag);
 	}
 	
 	@Override
@@ -78,4 +70,8 @@ public class LuckyCoinsData implements IExtendedEntityProperties
 	public static int CLIENT_COINS = 0;
 	@SideOnly(Side.CLIENT)
 	public static int CLIENT_BOXES = 0;
+	@SideOnly(Side.CLIENT)
+	public static DailyQuest CLIENT_DAILY_QUEST = DailyQuest.PLAYER_KILL;
+	@SideOnly(Side.CLIENT)
+	public static int CLIENT_DAILY_COMPLETED = 0;
 }

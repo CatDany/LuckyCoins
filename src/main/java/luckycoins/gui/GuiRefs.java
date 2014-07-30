@@ -10,6 +10,8 @@ public class GuiRefs
 	public static final String OPEN_LOOT_BOXES = StatCollector.translateToLocal("gui.main.open_loot_boxes");
 	public static final String SHOP = StatCollector.translateToLocal("gui.main.shop");
 	public static final String REDEEM_CODE = StatCollector.translateToLocal("gui.main.redeem_code");
+	public static final String DAILY_QUESTS = StatCollector.translateToLocal("gui.main.daily_quests");
+	public static final String HELP = StatCollector.translateToLocal("gui.main.help");
 	public static final String BUY = StatCollector.translateToLocal("gui.shop.buy");
 	public static final String BUY_ONE = StatCollector.translateToLocal("gui.shop.buy_one");
 	public static final String GET_FREE_LOOT_BOXES = StatCollector.translateToLocal("gui.shop.free");

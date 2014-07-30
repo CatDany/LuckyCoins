@@ -56,12 +56,6 @@ public class EventPlayer
 	}
 	
 	@SubscribeEvent
-	public void itemCrafted(PlayerEvent.ItemCraftedEvent e)
-	{
-		if (e.player.worldObj.isRemote)
-			return;
-	}
-	
 	public void playerTick(TickEvent.PlayerTickEvent e)
 	{
 		if (e.player.worldObj.isRemote)
@@ -69,15 +63,15 @@ public class EventPlayer
 		
 		LuckyCoinsData data = LuckyCoinsData.get(e.player);
 		
-		if (!data.dailyData.date.equals(DailyQuestHandler.getFormattedDate()))
+		if (!data.dailyData.date.equals(DailyQuestHandler.getFormattedDate()) || data.dailyData.daily != LuckyCoins.quests.getCurrentDailyQuest())
 		{
 			data.dailyData = new DailyQuestData(LuckyCoins.quests.getCurrentDailyQuest());
 			PlayerUtils.print(e.player, Paragraph.gold + MessageRefs.DAILY_QUEST_CHANGED_1);
-			PlayerUtils.print(e.player, Paragraph.gold + MessageRefs.DAILY_QUEST_CHANGED_2);
+			PlayerUtils.print(e.player, Paragraph.gold + String.format(MessageRefs.DAILY_QUEST_CHANGED_2, Keyboard.getKeyName(LuckyCoins.keybinds.keyGui.getKeyCode())));
 		}
 	}
 	
-	private static class MessageRefs
+	public static class MessageRefs
 	{
 		public static final String WELCOME_1 = StatCollector.translateToLocal("message.welcome.1");
 		public static final String WELCOME_2 = StatCollector.translateToLocal("message.welcome.2");
@@ -88,5 +82,8 @@ public class EventPlayer
 		
 		public static final String DAILY_QUEST_CHANGED_1 = StatCollector.translateToLocal("message.daily_quest_changed.1");
 		public static final String DAILY_QUEST_CHANGED_2 = StatCollector.translateToLocal("message.daily_quest_changed.2");
+		
+		public static final String DAILY_QUEST_COMPLETED_1 = StatCollector.translateToLocal("message.daily_quest_completed.1");
+		public static final String DAILY_QUEST_COMPLETED_2 = StatCollector.translateToLocal("message.daily_quest_completed.2");
 	}
 }

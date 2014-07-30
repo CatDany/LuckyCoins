@@ -1,6 +1,7 @@
 package luckycoins.network.packet;
 
 import io.netty.buffer.ByteBuf;
+import luckycoins.core.DailyQuestHandler;
 import luckycoins.core.LuckyCoinsData;
 import luckycoins.network.PacketHandler;
 import luckycoins.network.packet.PacketDataSync.MessageDataSync;
@@ -24,6 +25,8 @@ public class PacketDataSync implements IMessageHandler<MessageDataSync, IMessage
 		{
 			LuckyCoinsData.CLIENT_COINS = message.coins;
 			LuckyCoinsData.CLIENT_BOXES = message.boxes;
+			LuckyCoinsData.CLIENT_DAILY_QUEST = DailyQuestHandler.getQuest(message.dailyId);
+			LuckyCoinsData.CLIENT_DAILY_COMPLETED = message.dailyCompleted;
 		}
 		return null;
 	}
@@ -32,6 +35,8 @@ public class PacketDataSync implements IMessageHandler<MessageDataSync, IMessage
 	{
 		private int coins;
 		private int boxes;
+		private short dailyId;
+		private short dailyCompleted;
 		
 		public MessageDataSync() {}
 		
@@ -39,6 +44,8 @@ public class PacketDataSync implements IMessageHandler<MessageDataSync, IMessage
 		{
 			this.coins = data.coins;
 			this.boxes = data.loot_boxes;
+			this.dailyId = (short)data.dailyData.daily.index;
+			this.dailyCompleted = (short)data.dailyData.completed;
 		}
 		
 		@Override
@@ -46,6 +53,8 @@ public class PacketDataSync implements IMessageHandler<MessageDataSync, IMessage
 		{
 			this.coins = buf.readInt();
 			this.boxes = buf.readInt();
+			this.dailyId = buf.readShort();
+			this.dailyCompleted = buf.readShort();
 		}
 		
 		@Override
@@ -53,6 +62,8 @@ public class PacketDataSync implements IMessageHandler<MessageDataSync, IMessage
 		{
 			buf.writeInt(coins);
 			buf.writeInt(boxes);
+			buf.writeShort(dailyId);
+			buf.writeShort(dailyCompleted);
 		}
 	}
 }

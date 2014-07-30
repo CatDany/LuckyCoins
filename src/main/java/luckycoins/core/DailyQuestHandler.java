@@ -1,15 +1,16 @@
 package luckycoins.core;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
-import java.util.TimeZone;
 
-import luckycoins.Configuration;
 import luckycoins.LuckyCoins;
-
-import com.ibm.icu.text.SimpleDateFormat;
+import luckycoins.event.EventPlayer.MessageRefs;
+import net.minecraft.entity.player.EntityPlayer;
+import danylibs.Paragraph;
+import danylibs.PlayerUtils;
 
 public class DailyQuestHandler
 {
@@ -23,9 +24,28 @@ public class DailyQuestHandler
 		return getQuest(index);
 	}
 	
-	private void registerDailyQuest(DailyQuest daily)
+	public void triggerDailyQuest(EntityPlayer player, DailyQuest daily, int amount)
 	{
-		list.add(daily);
+		LuckyCoinsData data = LuckyCoinsData.get(player);
+		if (data.dailyData.daily == daily && !data.dailyData.got_reward)
+		{
+			data.dailyData.completed += amount;
+			if (data.dailyData.completed >= data.dailyData.daily.max)
+			{
+				data.dailyData.completed = data.dailyData.daily.max;
+				triggerDailyReward(player);
+			}
+		}
+	}
+	
+	private void triggerDailyReward(EntityPlayer player)
+	{
+		LuckyCoinsData data = LuckyCoinsData.get(player);
+		int reward = data.dailyData.daily.reward;
+		data.coins += reward;
+		data.dailyData.got_reward = true;
+		PlayerUtils.print(player, Paragraph.gold + MessageRefs.DAILY_QUEST_COMPLETED_1);
+		PlayerUtils.print(player, Paragraph.gold + String.format(MessageRefs.DAILY_QUEST_COMPLETED_2, data.dailyData.daily.reward));
 	}
 	
 	public static int getQuestsNumber()
@@ -38,20 +58,19 @@ public class DailyQuestHandler
 		return LuckyCoins.quests.list.get(index);
 	}
 	
-	public static int getNextFreeDailyQuestIndex()
-	{
-		return LuckyCoins.quests.list.size();
-	}
-	
 	public static String getFormattedDate()
 	{
-		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone(Configuration.TIME_ZONE));
-		return cal.YEAR + "-" + cal.MONTH + "-" + cal.DAY_OF_MONTH;
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		date.setTime(System.currentTimeMillis());
+		return format.format(date);
 	}
 	
-	public static void initDailyQuests()
+	public void initDailyQuests()
 	{
-		LuckyCoins.quests.registerDailyQuest(new DailyQuest("PLAYER_KILL", 50, 3));
-		LuckyCoins.quests.registerDailyQuest(new DailyQuest("ZOMBIE_HEAL", 70, 3));
+		list.add(DailyQuest.PLAYER_KILL);
+		list.add(DailyQuest.ZOMBIE_HEAL);
+		list.add(DailyQuest.HARVESTER);
+		list.add(DailyQuest.KNOCKDOWN);
 	}	
 }

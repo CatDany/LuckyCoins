@@ -3,6 +3,7 @@ package luckycoins;
 import luckycoins.blocks.core.ModBlocks;
 import luckycoins.core.DailyQuestHandler;
 import luckycoins.event.EventClient;
+import luckycoins.event.EventDailyQuests;
 import luckycoins.event.EventPlayer;
 import luckycoins.items.core.ModItems;
 import luckycoins.misc.KeybindHandler;
@@ -11,6 +12,8 @@ import luckycoins.proxy.IProxy;
 import luckycoins.recipes.Recipes;
 
 import org.apache.logging.log4j.Logger;
+
+import com.google.common.eventbus.EventBus;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -60,8 +63,10 @@ public class LuckyCoins
 		
 		PacketHandler.instance().init();
 		keybinds.initKeybindings();
+		quests.initDailyQuests();
 		EventBusHelper.checkBusAndRegister(new EventPlayer());
 		EventBusHelper.checkBusAndRegister(new EventClient());
+		EventBusHelper.checkBusAndRegister(new EventDailyQuests());
 	}
 	
 	@EventHandler
