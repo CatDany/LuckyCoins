@@ -1,4 +1,3 @@
-item.master_coin.name=Master Coin
 item.action_coin_common.name=Common Coin
 item.action_coin_rare.name=§9Rare Coin§r
 item.action_coin_epic.name=§5Epic Coin§r
@@ -35,6 +34,8 @@ message.daily_quest_completed.2=Reward: %s gold
 
 message.redeem.success=Successfully redeemed a code (%s boxes)!
 message.redeem.fail=Failed to redeem a code!
+
+config.settings.debug_mode=Debug Mode
 
 quest.PLAYER_KILL.name=Triple Kill
 quest.PLAYER_KILL.desc=Kill 3 players
@@ -73,3 +74,15 @@ coin.EPIC.SPECTRAL_NIGHT.name=Spectral Knight
 coin.EPIC.SPECTRAL_NIGHT.desc=Give you a Spectral Sword with Looting X, it disappears in 2 minutes
 coin.COMMON.OXYGEN_NOT_THING.name=Oxygen is Not a Thing
 coin.COMMON.OXYGEN_NOT_THING.desc=Give Fire Resistance and Water Breathing for 1 minute
+coin.RARE.WEB_WRAP.name=Web Wrap
+coin.RARE.WEB_WRAP.desc=Make 5x5 web trap (Projectile)
+coin.COMMON.MYST_BUCKET.name=Mysterious Bucket
+coin.COMMON.MYST_BUCKET.desc=Summon a random block of liquid (Touch)
+coin.RARE.RAIN_OR_NOT.name=To Rain or Not To Rain
+coin.RARE.RAIN_OR_NOT.desc=Make a long thunderstorm in the world. If it's already raining, make it sunny instead.
+coin.COMMON.SAVE_FOR_LATER.name=Save It For Later
+coin.COMMON.SAVE_FOR_LATER.desc=Force server to save the world
+coin.RARE.BREAK_IT_DOWN.name=Break It Down
+coin.RARE.BREAK_IT_DOWN.desc=Break any simple block (Touch)
+coin.COMMON.SHIELDS_UP.name=Shields Up!
+coin.COMMON.SHIELDS_UP.desc=Give +4 to max health for 1 minute

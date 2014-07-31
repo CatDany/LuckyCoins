@@ -3,12 +3,17 @@ package luckycoins.items.core;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import luckycoins.items.ItemCoin;
+import net.minecraft.item.Item;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModItems
 {
+	public static Item action_coin;
+	
 	public static void initItems()
 	{
+		action_coin = new ItemCoin("action_coin");
 		registerItems();
 	}
 	

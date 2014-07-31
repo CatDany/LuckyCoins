@@ -1,22 +1,22 @@
 package luckycoins.event;
 
-import org.lwjgl.input.Keyboard;
+import java.util.Random;
 
 import luckycoins.LuckyCoins;
 import luckycoins.Refs;
-import luckycoins.core.DailyQuest;
+import luckycoins.core.CoinRegistry;
 import luckycoins.core.DailyQuestData;
 import luckycoins.core.DailyQuestHandler;
 import luckycoins.core.LuckyCoinsData;
-import luckycoins.items.core.ModItems;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
+
+import org.lwjgl.input.Keyboard;
+
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
-import danylibs.ItemUtils;
 import danylibs.Paragraph;
 import danylibs.PlayerUtils;
 

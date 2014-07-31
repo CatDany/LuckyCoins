@@ -4,26 +4,4 @@
 3. Revision: Important changes to a mod
 4. Build: Whenever I end working on a mod (e.g. every day). Also independent 
 
-build 6 of 0.1.0:
-- Daily Quests core is implemented
-- Added 'general.TimeZone' configuration option (default is 'GMT+4:00'), required on the server
-
-build 5 of 0.1.0:
-- Keybinding for GUI is implemented
-- Got rid of Master Coin
-
-build 4 of 0.1.0:
-- Redeem Code in menu is done
-- Fixed: GUIs pause game
-- Fixed: LuckyCoins creative tab is empty because it was constructed before pre init
-- Fixed: Buttons aren't clickable because mouseClicked() overridden it
-
-build 3 of 0.1.0:
-- Much stuff has been added
-
-build 2 of 0.1.0:
-- First mod setup done
-- Added Master Coin
-
-build 1 of 0.1.0:
-- Installed forge, yikes
+Current version: build 8 of 0.1.0

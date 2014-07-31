@@ -3,6 +3,8 @@ package luckycoins.gui;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.lwjgl.opengl.GL11;
+
 import luckycoins.Refs;
 import luckycoins.core.LuckyCoinsData;
 import net.minecraft.client.Minecraft;
@@ -25,10 +27,7 @@ public class GuiMain extends ModGui
 		buttonList.add(new GuiButton(1, width / 2 - 70, 110, 140, 20, GuiRefs.SHOP));
 		buttonList.add(new GuiButton(2, width / 2 - 70, 140, 140, 20, GuiRefs.REDEEM_CODE));
 		buttonList.add(new GuiButton(3, width / 2 - 70, 170, 140, 20, GuiRefs.DAILY_QUESTS));
-		buttonList.add(new GuiButton(4, width - 60, 5, 55, 20, GuiRefs.HELP));		
-		
-		// Fix of flashing rectangles
-		buttonList.add(new GuiButton(99, 0, 0, 0, 0, ""));
+		buttonList.add(new GuiButton(4, width - 60, 5, 55, 20, GuiRefs.HELP));
 	}
 	
 	@Override
@@ -37,6 +36,7 @@ public class GuiMain extends ModGui
 		drawDefaultBackground();
 		super.drawScreen(par1, par2, par3);
 		
+		GL11.glColor4f(1, 1, 1, 1);
 		mc.renderEngine.bindTexture(texture);
 		drawTexturedModalRect(width / 2 - 70, 40, 0, 0, 32, 32);
 		drawTexturedModalRect(width / 2 + 38, 41, 32, 0, 32, 32);

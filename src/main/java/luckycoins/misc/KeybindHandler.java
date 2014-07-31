@@ -1,6 +1,7 @@
 package luckycoins.misc;
 
 import luckycoins.Refs;
+import luckycoins.gui.GuiDailyQuest;
 import luckycoins.gui.GuiMain;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
@@ -17,10 +18,12 @@ import net.minecraft.client.settings.KeyBinding;
 public class KeybindHandler
 {
 	public final KeyBinding keyGui = new KeyBinding("LuckyCoins GUI", Keyboard.KEY_HOME, Refs.MOD_NAME);
+	public final KeyBinding keyDaily = new KeyBinding("LuckyCoins Daily Quests", Keyboard.KEY_END, Refs.MOD_NAME);
 	
 	public void initKeybindings()
 	{
 		ClientRegistry.registerKeyBinding(keyGui);
+		ClientRegistry.registerKeyBinding(keyDaily);
 		FMLCommonHandler.instance().bus().register(this);
 	}
 	
@@ -32,6 +35,10 @@ public class KeybindHandler
 			if (keyGui.getIsKeyPressed())
 			{
 				Minecraft.getMinecraft().displayGuiScreen(new GuiMain());
+			}
+			else if (keyDaily.getIsKeyPressed())
+			{
+				Minecraft.getMinecraft().displayGuiScreen(new GuiDailyQuest(true));
 			}
 		}
 	}

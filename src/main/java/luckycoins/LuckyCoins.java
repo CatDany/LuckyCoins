@@ -1,7 +1,9 @@
 package luckycoins;
 
 import luckycoins.blocks.core.ModBlocks;
+import luckycoins.core.CoinRegistry;
 import luckycoins.core.DailyQuestHandler;
+import luckycoins.entity.ModEntities;
 import luckycoins.event.EventClient;
 import luckycoins.event.EventDailyQuests;
 import luckycoins.event.EventPlayer;
@@ -51,6 +53,7 @@ public class LuckyCoins
 		logger = e.getModLog();
 		Configuration.init(e.getSuggestedConfigurationFile());
 		Configuration.reloadConfiguration();
+		CoinRegistry.initCoins();
 		proxy.preInit(e);
 	}
 	
@@ -59,6 +62,7 @@ public class LuckyCoins
 	{
 		ModBlocks.initBlocks();
 		ModItems.initItems();
+		ModEntities.initEntities();
 		Recipes.initRecipes();
 		
 		PacketHandler.instance().init();
@@ -67,12 +71,14 @@ public class LuckyCoins
 		EventBusHelper.checkBusAndRegister(new EventPlayer());
 		EventBusHelper.checkBusAndRegister(new EventClient());
 		EventBusHelper.checkBusAndRegister(new EventDailyQuests());
+		proxy.init(e);
 	}
 	
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent e)
 	{
 		Recipes.postInitOreDictNames();
+		proxy.postInit(e);
 	}
 	
 	@EventHandler

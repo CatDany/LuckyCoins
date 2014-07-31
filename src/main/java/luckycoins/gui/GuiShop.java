@@ -1,5 +1,7 @@
 package luckycoins.gui;
 
+import org.lwjgl.opengl.GL11;
+
 import scala.xml.PrettyPrinter.Para;
 import danylibs.InternetHelper;
 import danylibs.Paragraph;
@@ -30,9 +32,6 @@ public class GuiShop extends ModGui
 		((GuiButton)buttonList.get(1)).enabled = false;
 		((GuiButton)buttonList.get(2)).enabled = false;
 		((GuiButton)buttonList.get(3)).enabled = false;
-		
-		// Fix of flashing rectangles
-		buttonList.add(new GuiButton(99, 0, 0, 0, 0, ""));
 	}
 	
 	@Override
@@ -41,6 +40,7 @@ public class GuiShop extends ModGui
 		drawDefaultBackground();
 		super.drawScreen(par1, par2, par3);
 		
+		GL11.glColor4f(1, 1, 1, 1);
 		mc.renderEngine.bindTexture(GuiMain.texture);
 		drawTexturedModalRect(width / 2 - 70, 40, 0, 0, 32, 32);
 		drawTexturedModalRect(width / 2 + 38, 41, 32, 0, 32, 32);

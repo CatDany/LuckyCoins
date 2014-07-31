@@ -6,8 +6,7 @@ public class Configuration
 {
 	public static net.minecraftforge.common.config.Configuration config;
 	
-	@Deprecated
-	public static String TIME_ZONE;
+	public static boolean debug;
 	
 	public static void init(File file)
 	{
@@ -18,7 +17,7 @@ public class Configuration
 	{
 		config.load();
 		
-		TIME_ZONE = config.get(net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL, "TimeZone", "GMT+4:00", "@Deprecated").getString();
+		debug = config.getBoolean("Debug Mode", "Settings", false, "Do not use if you don't know what it does!", "config.settings.debug_mode");
 		
 		if (config.hasChanged())
 		{

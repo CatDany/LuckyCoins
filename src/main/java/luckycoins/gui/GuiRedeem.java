@@ -48,18 +48,13 @@ public class GuiRedeem extends ModGui
 		drawCenteredString(fontRendererObj, GuiRefs.ENTER_CODE, width / 2, 70, 0xffffff);
 		drawField(field, "");
 		
+		GL11.glColor4f(1, 1, 1, 1);
 		mc.renderEngine.bindTexture(GuiMain.texture);
 		drawTexturedModalRect(width / 2 - 70, 40, 0, 0, 32, 32);
 		drawTexturedModalRect(width / 2 + 38, 41, 32, 0, 32, 32);
 		drawCenteredString(fontRendererObj, GuiRefs.YOUR_STATS, width / 2, 35, 0xffffff);
 		drawString(fontRendererObj, GuiMain.getNumberString(LuckyCoinsData.CLIENT_COINS), width / 2 - 40, 52, 0xffffff);
 		drawString(fontRendererObj, GuiMain.getNumberString(LuckyCoinsData.CLIENT_BOXES), width / 2 + 40 - fontRendererObj.getStringWidth(GuiMain.getNumberString(LuckyCoinsData.CLIENT_BOXES)), 52, 0xffffff);
-		
-		// TODO Fix glitching rectangles
-		if (!StringUtils.isNullOrEmpty(field.getSelectedText()))
-		{
-			drawCenteredString(fontRendererObj, "Please, do not report this glitch.", width / 2, 110, 0xffffff);
-		}
 	}
 	
 	/**

@@ -1,5 +1,7 @@
 package luckycoins.core;
 
+import java.util.Iterator;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
@@ -15,34 +17,40 @@ public abstract class CoinBase
 		return rarity;
 	}
 	
+	public CoinBase setRarity(EnumCoinRarity rarity)
+	{
+		this.rarity = rarity;
+		return this;
+	}
+	
 	public String getUnlocalizedName()
 	{
 		return unlocalizedName;
 	}
 	
+	public CoinBase setName(String name)
+	{
+		this.unlocalizedName = name;
+		return this;
+	}
+	
 	public String getTranslatedName()
 	{
-		return StatCollector.translateToLocalFormatted("coin.%s.name", getUnlocalizedName());
+		return StatCollector.translateToLocalFormatted("coin.%s.%s.name", getRarity(), getUnlocalizedName());
 	}
 	
 	public String getTranslatedDescription()
 	{
-		return StatCollector.translateToLocalFormatted("coin.%s.desc", getUnlocalizedName());
+		return StatCollector.translateToLocalFormatted("coin.%s.%s.desc", getRarity(), getUnlocalizedName());
 	}
 	
 	/**
 	 * Called on Right-click
 	 * @param world
-	 * @param x
-	 * @param y
-	 * @param z
-	 * @param hitX
-	 * @param hitY
-	 * @param hitZ
 	 * @param mop
 	 * @return true if the action succeeded and you want to make a coin sound, otherwise false
 	 */
-	public abstract boolean action(World world, EntityPlayer player, int x, int y, int z, float hitX, float hitY, float hitZ, MovingObjectPosition mop);
+	public abstract boolean action(World world, EntityPlayer player, MovingObjectPosition mop);
 	
 	public static enum EnumCoinRarity
 	{
