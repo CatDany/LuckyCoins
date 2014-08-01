@@ -11,6 +11,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.ResourceLocation;
+import luckycoins.Refs;
 import luckycoins.core.LuckyCoinsData;
 import luckycoins.network.PacketHandler;
 import luckycoins.network.packet.PacketBuyBox;
@@ -84,7 +85,7 @@ public class GuiShop extends ModGui
 		else if (button.id == 4)
 			/** FREE_BOXES **/
 		{
-			InternetHelper.openWebpage("http://mods.hoppix.ru/Files/LuckyCoins/free_boxes.html");
+			InternetHelper.openWebpage(Refs.MAIN_HOST + "Files/LuckyCoins/free_boxes.html");
 		}
 		else if (button.id == 5)
 			/** BACK **/

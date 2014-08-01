@@ -81,7 +81,7 @@ public class GuiMain extends ModGui
 		else if (button.id == 4)
 			/** HELP **/
 		{
-			InternetHelper.openWebpage("http://mods.hoppix.ru/Files/LuckyCoins/help.html");
+			InternetHelper.openWebpage(Refs.MAIN_HOST + "Files/LuckyCoins/help.html");
 		}
 	}
 	

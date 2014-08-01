@@ -2,6 +2,7 @@ package luckycoins.network.packet;
 
 import io.netty.buffer.ByteBuf;
 import luckycoins.LuckyCoins;
+import luckycoins.Refs;
 import luckycoins.core.LuckyCoinsData;
 import luckycoins.misc.Results.EnumResult;
 import luckycoins.network.PacketHandler;
@@ -25,7 +26,7 @@ public class PacketRedeem implements IMessageHandler<MessageRedeem, IMessage>
 			int boxes = 0;
 			try
 			{
-				boxes = Integer.parseInt(InternetHelper.readRemoteFile("http://mods.hoppix.ru/Files/remote/LuckyCoins/check.php?key=%s", message.code));
+				boxes = Integer.parseInt(InternetHelper.readRemoteFile(Refs.MAIN_HOST + "Files/remote/LuckyCoins/check.php?key=%s", message.code));
 			}
 			catch (NumberFormatException t)
 			{

@@ -14,4 +14,6 @@ public class Refs
 	
 	public static final String PROXY_CLIENT = "luckycoins.proxy.ClientProxy";
 	public static final String PROXY_SERVER = "luckycoins.proxy.ServerProxy";
+	
+	public static final String MAIN_HOST = "http://mods.hoppix.ru/";
 }
