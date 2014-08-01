@@ -9,6 +9,7 @@ import luckycoins.event.EventDailyQuests;
 import luckycoins.event.EventPlayer;
 import luckycoins.items.core.ModItems;
 import luckycoins.misc.KeybindHandler;
+import luckycoins.misc.ModPotions;
 import luckycoins.network.PacketHandler;
 import luckycoins.proxy.IProxy;
 import luckycoins.recipes.Recipes;
@@ -54,6 +55,7 @@ public class LuckyCoins
 		Configuration.init(e.getSuggestedConfigurationFile());
 		Configuration.reloadConfiguration();
 		CoinRegistry.initCoins();
+		ModPotions.patchPotionSystem();
 		proxy.preInit(e);
 	}
 	
@@ -63,6 +65,7 @@ public class LuckyCoins
 		ModBlocks.initBlocks();
 		ModItems.initItems();
 		ModEntities.initEntities();
+		ModPotions.initPotions();
 		Recipes.initRecipes();
 		
 		PacketHandler.instance().init();

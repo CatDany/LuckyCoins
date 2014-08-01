@@ -1,15 +1,13 @@
 package luckycoins.event;
 
-import java.util.Random;
-
 import luckycoins.LuckyCoins;
 import luckycoins.Refs;
-import luckycoins.core.CoinRegistry;
 import luckycoins.core.DailyQuestData;
 import luckycoins.core.DailyQuestHandler;
 import luckycoins.core.LuckyCoinsData;
+import luckycoins.misc.ModPotions;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.StatCollector;
+import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 
 import org.lwjgl.input.Keyboard;
@@ -17,6 +15,7 @@ import org.lwjgl.input.Keyboard;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
+import danylibs.LocalizationHelper;
 import danylibs.Paragraph;
 import danylibs.PlayerUtils;
 
@@ -58,6 +57,23 @@ public class EventPlayer
 	@SubscribeEvent
 	public void playerTick(TickEvent.PlayerTickEvent e)
 	{
+		if (e.player.isPotionActive(ModPotions.step_assist))
+		{
+			PotionEffect potion = e.player.getActivePotionEffect(ModPotions.step_assist);
+			if (potion.getDuration() < 3)
+			{
+				if (!e.player.worldObj.isRemote)
+				{
+					e.player.removePotionEffect(ModPotions.step_assist.id);
+				}
+				e.player.stepHeight = 0.5F;
+			}
+			else
+			{
+				e.player.stepHeight = 1.0F + potion.getAmplifier() * 0.5F;
+			}
+		}
+		
 		if (e.player.worldObj.isRemote)
 			return;
 		
@@ -73,17 +89,17 @@ public class EventPlayer
 	
 	public static class MessageRefs
 	{
-		public static final String WELCOME_1 = StatCollector.translateToLocal("message.welcome.1");
-		public static final String WELCOME_2 = StatCollector.translateToLocal("message.welcome.2");
-		public static final String WELCOME_3 = StatCollector.translateToLocal("message.welcome.3");
-		public static final String WELCOME_4 = StatCollector.translateToLocal("message.welcome.4");
-		public static final String WELCOME_5 = StatCollector.translateToLocal("message.welcome.5");
-		public static final String WELCOME_6 = StatCollector.translateToLocal("message.welcome.6");
+		public static final String WELCOME_1 = LocalizationHelper.get("message.welcome.1");
+		public static final String WELCOME_2 = LocalizationHelper.get("message.welcome.2");
+		public static final String WELCOME_3 = LocalizationHelper.get("message.welcome.3");
+		public static final String WELCOME_4 = LocalizationHelper.get("message.welcome.4");
+		public static final String WELCOME_5 = LocalizationHelper.get("message.welcome.5");
+		public static final String WELCOME_6 = LocalizationHelper.get("message.welcome.6");
 		
-		public static final String DAILY_QUEST_CHANGED_1 = StatCollector.translateToLocal("message.daily_quest_changed.1");
-		public static final String DAILY_QUEST_CHANGED_2 = StatCollector.translateToLocal("message.daily_quest_changed.2");
+		public static final String DAILY_QUEST_CHANGED_1 = LocalizationHelper.get("message.daily_quest_changed.1");
+		public static final String DAILY_QUEST_CHANGED_2 = LocalizationHelper.get("message.daily_quest_changed.2");
 		
-		public static final String DAILY_QUEST_COMPLETED_1 = StatCollector.translateToLocal("message.daily_quest_completed.1");
-		public static final String DAILY_QUEST_COMPLETED_2 = StatCollector.translateToLocal("message.daily_quest_completed.2");
+		public static final String DAILY_QUEST_COMPLETED_1 = LocalizationHelper.get("message.daily_quest_completed.1");
+		public static final String DAILY_QUEST_COMPLETED_2 = LocalizationHelper.get("message.daily_quest_completed.2");
 	}
 }

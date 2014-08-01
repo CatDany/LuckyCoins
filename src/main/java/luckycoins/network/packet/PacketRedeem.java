@@ -6,11 +6,11 @@ import luckycoins.core.LuckyCoinsData;
 import luckycoins.misc.Results.EnumResult;
 import luckycoins.network.PacketHandler;
 import luckycoins.network.packet.PacketRedeem.MessageRedeem;
-import net.minecraft.util.StatCollector;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import danylibs.InternetHelper;
+import danylibs.LocalizationHelper;
 import danylibs.Paragraph;
 import danylibs.PlayerUtils;
 
@@ -37,8 +37,8 @@ public class PacketRedeem implements IMessageHandler<MessageRedeem, IMessage>
 			
 			PlayerUtils.print(ctx.getServerHandler().playerEntity, 
 					result == EnumResult.SUCCESS
-					? Paragraph.green + StatCollector.translateToLocalFormatted("message.redeem.success", boxes)
-					: Paragraph.rose + StatCollector.translateToLocal("message.redeem.fail"));
+					? Paragraph.green + LocalizationHelper.get("message.redeem.success", boxes)
+					: Paragraph.rose + LocalizationHelper.get("message.redeem.fail"));
 		}
 		return null;
 	}

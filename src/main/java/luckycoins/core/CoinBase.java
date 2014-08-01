@@ -1,11 +1,10 @@
 package luckycoins.core;
 
-import java.util.Iterator;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import danylibs.LocalizationHelper;
 
 public abstract class CoinBase
 {
@@ -34,14 +33,20 @@ public abstract class CoinBase
 		return this;
 	}
 	
+	public CoinBase registerCoin()
+	{
+		CoinRegistry.registerCoin(this);
+		return this;
+	}
+	
 	public String getTranslatedName()
 	{
-		return StatCollector.translateToLocalFormatted("coin.%s.%s.name", getRarity(), getUnlocalizedName());
+		return LocalizationHelper.get("coin." + getRarity() + "." + getUnlocalizedName() + ".name");
 	}
 	
 	public String getTranslatedDescription()
 	{
-		return StatCollector.translateToLocalFormatted("coin.%s.%s.desc", getRarity(), getUnlocalizedName());
+		return LocalizationHelper.get("coin." + getRarity() + "." + getUnlocalizedName() + ".desc");
 	}
 	
 	/**

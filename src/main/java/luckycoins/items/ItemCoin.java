@@ -13,13 +13,15 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import danylibs.IconRegHelper;
+import danylibs.KeyBoardHelper;
+import danylibs.Paragraph;
 
 public class ItemCoin extends ModItemBase
 {
@@ -53,19 +55,20 @@ public class ItemCoin extends ModItemBase
 	}
 	
 	@Override
-	public IIcon getIcon(ItemStack stack, int pass)
+	public IIcon getIconFromDamage(int meta)
 	{
-		String r = stack.getTagCompound().getString("CoinRarity");
-		if ("COMMON".equals(r))
+		switch (meta)
+		{
+		case 0:
 			return icon_common;
-		else if ("RARE".equals(r))
+		case 1:
 			return icon_rare;
-		else if ("EPIC".equals(r))
+		case 2:
 			return icon_epic;
-		else if ("LEGENDARY".equals(r))
+		case 3:
 			return icon_legendary;
-		else
-			return icon_common;
+		}
+		return Items.potato.getIconFromDamage(0);
 	}
 	
 	@Override
@@ -73,6 +76,36 @@ public class ItemCoin extends ModItemBase
 			EntityPlayer player, List list, boolean par4)
 	{
 		list.add(CoinRegistry.getCoin(stack.getTagCompound().getString("CoinType")).getTranslatedName());
+		if (KeyBoardHelper.isShiftDown())
+		{
+			String desc = CoinRegistry.getCoin(stack.getTagCompound().getString("CoinType")).getTranslatedDescription();
+			while (desc.length() > 0)
+			{
+				if (desc.length() > 12)
+				{
+					int spaceIndex = desc.indexOf(" ", 12);
+					if (spaceIndex == -1)
+					{
+						list.add(Paragraph.light_green + Paragraph.italic + desc);
+						break;
+					}
+					else
+					{
+						list.add(Paragraph.light_green + Paragraph.italic + desc.substring(0, spaceIndex));
+						desc = desc.substring(spaceIndex + 1);
+					}
+				}
+				else
+				{
+					list.add(Paragraph.light_green + Paragraph.italic + desc);
+					break;
+				}
+			}
+		}
+		else
+		{
+			list.add(Paragraph.light_green + Paragraph.italic + "Hold SHIFT for details");
+		}
 	}
 	
 	@Override
@@ -103,7 +136,7 @@ public class ItemCoin extends ModItemBase
 	{
 		String name = stack.getTagCompound().getString("CoinType");
 		CoinBase coin = CoinRegistry.getCoin(name);
-		if (coin.action(world, player, getMovingObjectPositionFromPlayer(world, player, false)))
+		if (!world.isRemote && coin.action(world, player, getMovingObjectPositionFromPlayer(world, player, false)))
 		{
 			stack.stackSize--;
 			world.playSoundEffect(player.posX, player.posY + 0.5, player.posZ, "random.orb", 1.0F, world.rand.nextFloat() * 0.1F + 0.9F);

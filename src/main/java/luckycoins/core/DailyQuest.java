@@ -1,10 +1,6 @@
 package luckycoins.core;
 
-import java.util.ArrayList;
-
-import luckycoins.LuckyCoins;
-import net.minecraft.client.Minecraft;
-import net.minecraft.util.StatCollector;
+import danylibs.LocalizationHelper;
 
 public class DailyQuest
 {
@@ -37,11 +33,11 @@ public class DailyQuest
 	
 	public String getTranslatedQuestName()
 	{
-		return StatCollector.translateToLocal("quest." + name + ".name");
+		return LocalizationHelper.get("quest." + name + ".name");
 	}
 	
 	public String getTranslatedQuestDescription()
 	{
-		return StatCollector.translateToLocal("quest." + name + ".desc");
+		return LocalizationHelper.get("quest." + name + ".desc");
 	}
 }
