@@ -6,15 +6,12 @@ build
 dep
 eclipse
 gradle
-#raw_textures
-#src
 .classpath
-#.gitattributes
-#.gitignore
 .project
 build.cmd
-#build.gradle
-#changelog.txt
 gradlew
 gradlew.bat
+<<<<<<< HEAD
 eclipse/.metadata/.plugins/org.eclipse.core.resources/.projects/Minecraft/.location
+=======
+>>>>>>> de4d77c4cee4a73571a37e3345c129d944379c46
