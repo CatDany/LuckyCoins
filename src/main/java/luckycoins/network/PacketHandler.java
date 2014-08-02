@@ -6,6 +6,7 @@ import luckycoins.network.packet.PacketBuyBox;
 import luckycoins.network.packet.PacketDataSync;
 import luckycoins.network.packet.PacketRedeem;
 import luckycoins.network.packet.PacketResult;
+import luckycoins.network.packet.PacketSplashWarning;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import danylibs.NetworkHelper;
 
@@ -25,6 +26,7 @@ public class PacketHandler
 		helper.registerMessage(1, PacketResult.class, PacketResult.MessageResult.class);
 		helper.registerMessage(2, PacketDataSync.class, PacketDataSync.MessageDataSync.class);
 		helper.registerMessage(3, PacketBuyBox.class, PacketBuyBox.MessageBuyBox.class);
+		helper.registerMessage(4, PacketSplashWarning.class, PacketSplashWarning.MessageSplashWarning.class);
 	}
 	
 	public static PacketHandler instance()

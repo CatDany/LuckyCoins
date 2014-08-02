@@ -9,19 +9,24 @@ import luckycoins.LuckyCoins;
 import luckycoins.core.CoinBase.EnumCoinRarity;
 import luckycoins.entity.EntityProjectile;
 import luckycoins.items.core.ModItems;
+import luckycoins.misc.ModDamageSources;
 import luckycoins.misc.ModPotions;
-import net.minecraft.client.Minecraft;
+import luckycoins.network.PacketHandler;
+import luckycoins.network.packet.PacketSplashWarning;
+import luckycoins.thread.ThreadOneWithNature;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntityWitch;
+import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.Loader;
@@ -130,6 +135,10 @@ public class CoinRegistry
 		CoinBase LONG_JOURNEY = new CoinLongJourney().setName("LONG_JOURNEY").setRarity(EnumCoinRarity.RARE).registerCoin();
 		CoinBase FROM_BLANK_SLATE = new CoinFromBlankSlate().setName("FROM_BLANK_SLATE").setRarity(EnumCoinRarity.EPIC).registerCoin();
 		CoinBase REINFORCE = new CoinReinforce().setName("REINFORCE").setRarity(EnumCoinRarity.RARE).registerCoin();
+		CoinBase FENCES_ON_MY_WAY = new CoinFencesOnMyWay().setName("FENCES_ON_MY_WAY").setRarity(EnumCoinRarity.COMMON).registerCoin();
+		CoinBase UNFAIR_ADVANTAGE = new CoinUnfairAdvantage().setName("UNFAIR_ADVANTAGE").setRarity(EnumCoinRarity.COMMON).registerCoin();
+		CoinBase DONT_NEED_CAR = new CoinDontNeedCar().setName("DONT_NEED_CAR").setRarity(EnumCoinRarity.COMMON).registerCoin();
+		CoinBase ONE_WITH_NATURE = new CoinOneWithNature().setName("ONE_WITH_NATURE").setRarity(EnumCoinRarity.RARE).registerCoin();
 	}
 	
 	private static class CoinInnerRage extends CoinBase
@@ -138,7 +147,7 @@ public class CoinRegistry
 		public boolean action(World world, EntityPlayer player,
 				MovingObjectPosition mop)
 		{
-			player.attackEntityFrom(DamageSource.magic, 4);
+			player.attackEntityFrom(ModDamageSources.causeDamage(ModDamageSources.damageInnerrage, player), 4);
 			player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 10 * 20, 1, true));
 			return true;
 		}
@@ -150,10 +159,7 @@ public class CoinRegistry
 		public boolean action(World world, EntityPlayer player,
 				MovingObjectPosition mop)
 		{
-			if (!world.isRemote)
-			{
-				world.spawnEntityInWorld(new EntityProjectile(world, player).setType("MINDSPIKE"));
-			}
+			world.spawnEntityInWorld(new EntityProjectile(world, player).setType("MINDSPIKE"));
 			return true;
 		}
 	}
@@ -188,7 +194,7 @@ public class CoinRegistry
 			List<EntityMob> list = world.getEntitiesWithinAABB(EntityMob.class, aabb);
 			for (EntityMob i : list)
 			{
-				i.attackEntityFrom(DamageSource.causeIndirectMagicDamage(player, player), Float.MAX_VALUE);
+				i.attackEntityFrom(ModDamageSources.causeDamage(ModDamageSources.damageBlankSlate, player), Float.MAX_VALUE);
 				if (i.getHealth() > 0)
 				{
 					i.setHealth(0);
@@ -223,6 +229,111 @@ public class CoinRegistry
 		{
 			int hit = RNG.nextInt(8) + 1;
 			return LocalizationHelper.get("coin.COMMON.REINFORCE.data.witchName." + hit);
+		}
+	}
+	
+	private static class CoinFencesOnMyWay extends CoinBase
+	{
+		@Override
+		public boolean action(World world, EntityPlayer player,
+				MovingObjectPosition mop)
+		{
+			player.addPotionEffect(new PotionEffect(Potion.jump.id, 15 * 20, 2, true));
+			return true;
+		}
+	}
+	
+	private static class CoinUnfairAdvantage extends CoinBase
+	{
+		@Override
+		public boolean action(World world, EntityPlayer player,
+				MovingObjectPosition mop)
+		{
+			world.spawnEntityInWorld(new EntityProjectile(world, player).setType("UNFAIR_ADVANTAGE"));
+			return true;
+		}
+	}
+	
+	private static class CoinDontNeedCar extends CoinBase
+	{
+		@Override
+		public boolean action(World world, EntityPlayer player,
+				MovingObjectPosition mop)
+		{
+			EntityHorse horse = new EntityHorse(world);
+			if (mop != null && mop.typeOfHit == MovingObjectType.BLOCK)
+			{
+				int x = mop.blockX;
+				int y = mop.blockY;
+				int z = mop.blockZ;
+				switch (mop.sideHit)
+				{
+				case 0:
+					y--; break;
+				case 1:
+					y++; break;
+				case 2:
+					z--; break;
+				case 3:
+					z++; break;
+				case 4:
+					x--; break;
+				case 5:
+					x++; break;
+				}
+				horse.setPosition(x + 0.5, y + 0.5, z + 0.5);
+			}
+			else
+			{
+				horse.setPosition(player.posX, player.posY, player.posZ);
+			}
+			horse.setHorseTamed(true);
+			horse.setHorseSaddled(true);
+			horse.func_146086_d(new ItemStack(Items.iron_horse_armor));
+			return true;
+		}
+	}
+	
+	private static class CoinHealingTouch extends CoinBase
+	{
+		@Override
+		public boolean action(World world, EntityPlayer player,
+				MovingObjectPosition mop)
+		{
+			player.setHealth(player.getMaxHealth());
+			player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 6 * 20, 3, true));
+			return true;
+		}
+	}
+	
+	private static class CoinWeNeedToBeQuiet extends CoinBase
+	{
+		@Override
+		public boolean action(World world, EntityPlayer player,
+				MovingObjectPosition mop)
+		{
+			player.addPotionEffect(new PotionEffect(Potion.invisibility.id, 3 * 60 * 20, 3, true));
+			return true;
+		}
+	}
+	
+	private static class CoinOneWithNature extends CoinBase
+	{
+		@Override
+		public boolean action(World world, EntityPlayer player,
+				MovingObjectPosition mop)
+		{
+			if (player instanceof EntityPlayerMP)
+			{
+				PacketHandler.instance().net.sendTo(new PacketSplashWarning.MessageSplashWarning((byte)0, (byte)1), (EntityPlayerMP)player);
+			}
+			Thread thread = new ThreadOneWithNature(player, RNG);
+			thread.run();
+			if (player instanceof EntityPlayerMP)
+			{
+				PacketHandler.instance().net.sendTo(new PacketSplashWarning.MessageSplashWarning((byte)0, (byte)0), (EntityPlayerMP)player);
+			}
+			return true;
 		}
 	}
 	

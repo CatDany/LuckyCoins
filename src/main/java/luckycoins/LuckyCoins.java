@@ -9,6 +9,7 @@ import luckycoins.event.EventDailyQuests;
 import luckycoins.event.EventPlayer;
 import luckycoins.items.core.ModItems;
 import luckycoins.misc.KeybindHandler;
+import luckycoins.misc.ModDamageSources;
 import luckycoins.misc.ModPotions;
 import luckycoins.network.PacketHandler;
 import luckycoins.proxy.IProxy;
@@ -66,6 +67,7 @@ public class LuckyCoins
 		ModItems.initItems();
 		ModEntities.initEntities();
 		ModPotions.initPotions();
+		ModDamageSources.initDamageSources();
 		Recipes.initRecipes();
 		
 		PacketHandler.instance().init();

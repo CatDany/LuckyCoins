@@ -1,13 +1,14 @@
 package luckycoins.entity;
 
 import luckycoins.core.CoinRegistry;
+import luckycoins.misc.ModDamageSources;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.World;
@@ -65,7 +66,19 @@ public class EntityProjectile extends EntityThrowable
 		{
 			if (mop.typeOfHit == MovingObjectType.ENTITY && mop.entityHit instanceof EntityLivingBase)
 			{
-				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 50);
+				mop.entityHit.attackEntityFrom(ModDamageSources.causeDamage(ModDamageSources.damageMindspike, getThrower()), 50);
+				return;
+			}
+		}
+		else if ("UNFAIR_ADVANTAGE".equals(coinType))
+		{
+			if (mop.typeOfHit == MovingObjectType.ENTITY && mop.entityHit instanceof EntityLivingBase)
+			{
+				EntityLivingBase entity = (EntityLivingBase)mop.entityHit;
+				entity.addPotionEffect(new PotionEffect(Potion.weakness.id, 15 * 20, 1, true));
+				entity.addPotionEffect(new PotionEffect(Potion.confusion.id, 15 * 20, 0, true));
+				entity.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 15 * 20, 3, true));
+				entity.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 15 * 20, 2, true));
 				return;
 			}
 		}
