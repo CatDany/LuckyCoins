@@ -10,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 
+@Deprecated
 public class ThreadOneWithNature extends Thread
 {
 	private long ms_start;

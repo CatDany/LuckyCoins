@@ -1,13 +1,34 @@
+###################################################
+# Localization for LuckyCoins provided by CatDany #
+###################################################
+# You can use it as a template if you want to add #
+#               other localizations               #
+###################################################
+#          Some strings use %EOL% as an           #
+#                end of line symbol               #
+###################################################
+#        Some strings use %s for formatting       #
+#more info about java formatting you can find here#
+#              http://goo.gl/jKHu4o               #
+###################################################
+#     Some strings use § as a color identifier    #
+#  more info about color codes you can find here  #
+# http://minecraft.gamepedia.com/Formatting_codes #
+###################################################
+
 item.action_coin_common.name=Common Coin
 item.action_coin_rare.name=§9Rare Coin§r
 item.action_coin_epic.name=§5Epic Coin§r
 item.action_coin_legendary.name=§6Legendary Coin§r
+item.spectral_sword.name=§9Spectral Sword§r
 
 potion.step_assist.name=Step Assist
 
 death.attack.INNER_RAGE=%s died cuz he raged lol
 death.attack.MINDSPIKE=%s suffered death from a mindspike
 death.attack.FROM_BLANK_SLATE=%s was sent to Recycle Bin (but there's no way to get it back, sry)
+
+LuckyCoins.tooltip.spectral_sword.tooltip=This sword will disappear in %s:%s
 
 LuckyCoins.gui.main.open_loot_boxes=Open Loot Boxes
 LuckyCoins.gui.main.shop=Shop
@@ -42,6 +63,10 @@ LuckyCoins.message.redeem.success=Successfully redeemed a code (%s boxes)!
 LuckyCoins.message.redeem.fail=Failed to redeem a code!
 
 LuckyCoins.message.one_with_nature_warning=Warning! Your coin is looking for a good place to teleport you.%EOL%This may take a while.
+
+LuckyCoins.message.the_legend.cauldron=But I think it won't work on Cauldron lol, sry :(
+
+LuckyCoins.message.legend_info=Status is acquired by getting a legendary coin from a Loot Box.
 
 config.settings.debug_mode=Debug Mode
 
@@ -78,10 +103,13 @@ LuckyCoins.coin.RARE.ONE_WITH_NATURE.name=One With Nature [NYI]
 LuckyCoins.coin.RARE.ONE_WITH_NATURE.desc=Teleport you to a random place in the world
 LuckyCoins.coin.RARE.DUNGEONS_ARE_NASTY.name=Dungeons Are Nasty
 LuckyCoins.coin.RARE.DUNGEONS_ARE_NASTY.desc=Summon a chest with dungeon loot
-LuckyCoins.coin.EPIC.SPECTRAL_NIGHT.name=Spectral Knight
-LuckyCoins.coin.EPIC.SPECTRAL_NIGHT.desc=Give you a Spectral Sword with Looting X, it disappears in 2 minutes
+LuckyCoins.coin.EPIC.SPECTRAL_KNIGHT.name=Spectral Knight
+LuckyCoins.coin.EPIC.SPECTRAL_KNIGHT.desc=Give you a Spectral Sword with Looting X, it disappears in 2 minutes
+# This also used in name prefix for The Legends
+LuckyCoins.coin.LEGENDARY.LEGEND.name=The Legend
+LuckyCoins.coin.LEGENDARY.LEGEND.desc=Wealth is not a thing you need to care about. Right-click to get permanent status of "Legend" on the server.
 LuckyCoins.coin.COMMON.OXYGEN_NOT_THING.name=Oxygen is Not a Thing
-LuckyCoins.coin.COMMON.OXYGEN_NOT_THING.desc=Give Fire Resistance and Water Breathing for 1 minute
+LuckyCoins.coin.COMMON.OXYGEN_NOT_THING.desc=Give Fire Resistance and Water Breathing for 8 minutes
 LuckyCoins.coin.RARE.WEB_WRAP.name=Web Wrap
 LuckyCoins.coin.RARE.WEB_WRAP.desc=Make 5x5 web trap (Projectile)
 LuckyCoins.coin.COMMON.MYST_BUCKET.name=Mysterious Bucket

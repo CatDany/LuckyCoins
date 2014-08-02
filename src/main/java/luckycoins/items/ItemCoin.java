@@ -33,10 +33,6 @@ public class ItemCoin extends ModItemBase
 	public ItemCoin(String unlocName)
 	{
 		super(unlocName);
-		if (Configuration.debug)
-		{
-			setCreativeTab(ModCreativeTab.tab());
-		}
 	}
 	
 	@Override

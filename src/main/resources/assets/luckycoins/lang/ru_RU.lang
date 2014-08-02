@@ -1,0 +1,133 @@
+###################################################
+# Localization for LuckyCoins provided by CatDany #
+###################################################
+# You can use it as a template if you want to add #
+#               other localizations               #
+###################################################
+#          Some strings use %EOL% as an           #
+#                end of line symbol               #
+###################################################
+#        Some strings use %s for formatting       #
+#more info about java formatting you can find here#
+#              http://goo.gl/jKHu4o               #
+###################################################
+#     Some strings use § as a color identifier    #
+#  more info about color codes you can find here  #
+# http://minecraft.gamepedia.com/Formatting_codes #
+###################################################
+
+item.action_coin_common.name=Обычная монета
+item.action_coin_rare.name=§9Редкая монета§r
+item.action_coin_epic.name=§5Эпическая монета§r
+item.action_coin_legendary.name=§6Легендарная монета§r
+item.spectral_sword.name=§9Призрачный меч§r
+
+potion.step_assist.name=Высокий шаг
+
+death.attack.INNER_RAGE=%s бомбанул лол
+death.attack.MINDSPIKE=%s умер мучительной смертью от сильной головной боли
+death.attack.FROM_BLANK_SLATE=%s был отправлен в Корзину (и никак его не вернуть, соррь)
+
+LuckyCoins.tooltip.spectral_sword.tooltip=Этот меч пропадет через %s:%s
+
+LuckyCoins.gui.main.open_loot_boxes=Открыть Коробки
+LuckyCoins.gui.main.shop=Магазин
+LuckyCoins.gui.main.redeem_code=Активировать код
+LuckyCoins.gui.main.daily_quests=Ежедневные задания
+LuckyCoins.gui.main.help=Помощь
+LuckyCoins.gui.shop.buy=Купить %s Коробок
+LuckyCoins.gui.shop.buy_one=Купить %s Коробку
+LuckyCoins.gui.shop.free=Бесплатные коробки
+LuckyCoins.gui.shop.not_enough_gold=Недостаточно золота!
+LuckyCoins.gui.redeem.enter_code=Введите код
+LuckyCoins.gui.redeem.redeem=Активировать
+LuckyCoins.gui.your_stats=---- Ваши данные ----
+LuckyCoins.gui.wait=Подождите...
+LuckyCoins.gui.back=Назад
+
+LuckyCoins.message.welcome.1=Добро пожаловать в мир Minecraft с модом %s!
+LuckyCoins.message.welcome.2=Этот мод о специальных монетках, которые позволяют
+LuckyCoins.message.welcome.3=Вам делать кучу разных прикольностей.
+LuckyCoins.message.welcome.4=Но Вам понадобится удача, чтобы получить
+LuckyCoins.message.welcome.5=все нужные монеты. Для начала нажмите %s
+LuckyCoins.message.welcome.6=и сможете прочитать больше ~ Удачи!
+
+LuckyCoins.message.daily_quest_changed.1=Ежедневное задание от LuckyCoins поменялось!
+LuckyCoins.message.daily_quest_changed.2=Нажмите %s, чтобы новое задание.
+
+LuckyCoins.message.daily_quest_completed.1=Вы выполнили ежедневное задание от LuckyCoins!
+# this message is also used in gui.daily_quests
+LuckyCoins.message.daily_quest_completed.2=Награда: %s золота
+
+LuckyCoins.message.redeem.success=Код активирован успешно. Вы получили %s коробок.
+LuckyCoins.message.redeem.fail=Не удалось активировать код!
+
+LuckyCoins.message.one_with_nature_warning=Внимание! Ваша монетка ищет хорошее место для телепорта.%EOL%Это может занять некоторое время!
+
+LuckyCoins.message.the_legend.cauldron=Но мне кажется это не будет работать с Cauldron, соррь :(
+
+LuckyCoins.message.legend_info=Статус получен с помощью легендарной монеты.
+
+config.settings.debug_mode=Режим поиска ошибок
+
+LuckyCoins.quest.PLAYER_KILL.name=Буйство!
+LuckyCoins.quest.PLAYER_KILL.desc=Убейте трех игроков
+LuckyCoins.quest.ZOMBIE_HEAL.name=Оу, бедный зомби!
+LuckyCoins.quest.ZOMBIE_HEAL.desc=Вылечите зомби-жителя и превратите его в обычного жителя
+LuckyCoins.quest.HARVESTER.name=Великий Фермер
+LuckyCoins.quest.HARVESTER.desc=Соберите 50 пшеницы, картофеля или морковки
+LuckyCoins.quest.KNOCKDOWN.name=Нокдаун
+LuckyCoins.quest.KNOCKDOWN.desc=Нанесите 150 урона монстрам
+
+LuckyCoins.coin.COMMON.INNER_RAGE.name=Внутренняя ярость
+LuckyCoins.coin.COMMON.INNER_RAGE.desc=Наносит 4 урона и дает эффект "Сила II" на 10 секунд
+LuckyCoins.coin.COMMON.MINDSPIKE.name=Головная Боль
+LuckyCoins.coin.COMMON.MINDSPIKE.desc=Наносит 50 урона (Дальний бой)
+LuckyCoins.coin.RARE.LONG_JOURNEY.name=Далекое Путешествие
+LuckyCoins.coin.RARE.LONG_JOURNEY.desc=Дает эффекты "Скорость III", "Мощный прыжок II" и "Высокий шаг" на 10 минут
+LuckyCoins.coin.EPIC.FROM_BLANK_SLATE.name=С чистого листа
+LuckyCoins.coin.EPIC.FROM_BLANK_SLATE.desc=Убивает всех мобов в радиусе 15 блоков от Вас
+LuckyCoins.coin.RARE.REINFORCE.name=Подкрепление
+LuckyCoins.coin.RARE.REINFORCE.desc=Призывает ведьму, которая не может исчезнуть
+LuckyCoins.coin.COMMON.FENCES_ON_MY_WAY.name=Заборы на пути
+LuckyCoins.coin.COMMON.FENCES_ON_MY_WAY.desc=Дает эффект "Мощный прыжок III" на 15 секунд
+LuckyCoins.coin.COMMON.UNFAIR_ADVANTAGE.name=Нечестное преимущество
+LuckyCoins.coin.COMMON.UNFAIR_ADVANTAGE.desc=Дает эффекты "Слабость", "Тошнота", "Усталость IV" и "Замедление III" на 15 секунд (Дальний бой)
+LuckyCoins.coin.COMMON.DONT_NEED_CAR.name=Машина не нужна
+LuckyCoins.coin.COMMON.DONT_NEED_CAR.desc=Призывает лошадь с седлом и железной броней
+LuckyCoins.coin.COMMON.HEALING_TOUCH.name=Целительное прикосновение
+LuckyCoins.coin.COMMON.HEALING_TOUCH.desc=Мгновенно исцеляет и дает эффект "Регенерация IV" на 6 секунд
+LuckyCoins.coin.COMMON.WE_NEED_TO_BE_QUIET.name=Надо вести себя тихо
+LuckyCoins.coin.COMMON.WE_NEED_TO_BE_QUIET.desc=Дает эффект "Невидимость" на 3 минуты
+LuckyCoins.coin.RARE.ONE_WITH_NATURE.name=Единение с природой [NYI]
+LuckyCoins.coin.RARE.ONE_WITH_NATURE.desc=Телепортирует Вас в случайное место в открытом мире
+LuckyCoins.coin.RARE.DUNGEONS_ARE_NASTY.name=Подземелья противны
+LuckyCoins.coin.RARE.DUNGEONS_ARE_NASTY.desc=Создает сундук с сокровищами из подземелья
+LuckyCoins.coin.EPIC.SPECTRAL_KNIGHT.name=Призрачный Рыцарь
+LuckyCoins.coin.EPIC.SPECTRAL_KNIGHT.desc=Дает Вам Призрачный меч с Добычей X. Он исчезает через 2 минуты.
+# This also used in name prefix for The Legends
+LuckyCoins.coin.LEGENDARY.LEGEND.name=Легенда
+LuckyCoins.coin.LEGENDARY.LEGEND.desc=Материальные ценности ничего не значат. Нажмите, чтобы получить постоянный статус "Легенда" на сервере
+LuckyCoins.coin.COMMON.OXYGEN_NOT_THING.name=Кислород не нужен
+LuckyCoins.coin.COMMON.OXYGEN_NOT_THING.desc=Дает эффекты "Огнестойкость" и "Подводное дыхание" на 8 минут
+LuckyCoins.coin.RARE.WEB_WRAP.name=Web Wrap
+LuckyCoins.coin.RARE.WEB_WRAP.desc=Make 5x5 web trap (Projectile)
+LuckyCoins.coin.COMMON.MYST_BUCKET.name=Mysterious Bucket
+LuckyCoins.coin.COMMON.MYST_BUCKET.desc=Summon a random block of liquid (Touch)
+LuckyCoins.coin.RARE.RAIN_OR_NOT.name=To Rain or Not To Rain
+LuckyCoins.coin.RARE.RAIN_OR_NOT.desc=Make a long thunderstorm in the world. If it's already raining, make it sunny instead.
+LuckyCoins.coin.COMMON.SAVE_FOR_LATER.name=Save It For Later
+LuckyCoins.coin.COMMON.SAVE_FOR_LATER.desc=Force server to save the world
+LuckyCoins.coin.RARE.BREAK_IT_DOWN.name=Break It Down
+LuckyCoins.coin.RARE.BREAK_IT_DOWN.desc=Break any simple block (Touch)
+LuckyCoins.coin.COMMON.SHIELDS_UP.name=Shields Up!
+LuckyCoins.coin.COMMON.SHIELDS_UP.desc=Give +4 to max health for 1 minute
+
+LuckyCoins.coin.COMMON.REINFORCE.data.witchName.1=Великая Вдова Фарлина
+LuckyCoins.coin.COMMON.REINFORCE.data.witchName.2=Тетушка Гринлиф
+LuckyCoins.coin.COMMON.REINFORCE.data.witchName.3=Лили Поттер
+LuckyCoins.coin.COMMON.REINFORCE.data.witchName.4=Бене Гессерит
+LuckyCoins.coin.COMMON.REINFORCE.data.witchName.5=Эрука Фрог
+LuckyCoins.coin.COMMON.REINFORCE.data.witchName.6=Мораг
+LuckyCoins.coin.COMMON.REINFORCE.data.witchName.7=Юкари Сэндо
+LuckyCoins.coin.COMMON.REINFORCE.data.witchName.8=Бонни Беннет

@@ -4,16 +4,16 @@ import luckycoins.Configuration;
 import luckycoins.Refs;
 import luckycoins.misc.ModCreativeTab;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
 
-public class ModItemBase extends Item
+public class ModItemSword extends ItemSword
 {
-	private final String unlocName; 
+	private final String unlocName;
 	
-	public ModItemBase(String unlocName)
+	public ModItemSword(String unlocName, ToolMaterial mat)
 	{
-		super();
+		super(mat);
 		setUnlocalizedName(unlocName);
 		if (Configuration.debug)
 		{
@@ -28,11 +28,5 @@ public class ModItemBase extends Item
 	public void registerIcons(IIconRegister reg)
 	{
 		itemIcon = reg.registerIcon(Refs.RESLOC + ":" + unlocName);
-	}
-	
-	@Override
-	public String getUnlocalizedName(ItemStack stack)
-	{
-		return getHasSubtypes() ? getUnlocalizedName() + "|" + stack.getItemDamage() : getUnlocalizedName();
 	}
 }

@@ -7,6 +7,7 @@ import luckycoins.entity.ModEntities;
 import luckycoins.event.EventClient;
 import luckycoins.event.EventDailyQuests;
 import luckycoins.event.EventPlayer;
+import luckycoins.event.EventServer;
 import luckycoins.items.core.ModItems;
 import luckycoins.misc.KeybindHandler;
 import luckycoins.misc.ModDamageSources;
@@ -76,6 +77,7 @@ public class LuckyCoins
 		EventBusHelper.checkBusAndRegister(new EventPlayer());
 		EventBusHelper.checkBusAndRegister(new EventClient());
 		EventBusHelper.checkBusAndRegister(new EventDailyQuests());
+		EventBusHelper.checkBusAndRegister(new EventServer());
 		proxy.init(e);
 	}
 	

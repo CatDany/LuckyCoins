@@ -8,18 +8,18 @@ import java.util.Random;
 import luckycoins.LuckyCoins;
 import luckycoins.core.CoinBase.EnumCoinRarity;
 import luckycoins.entity.EntityProjectile;
+import luckycoins.items.ItemSpectralSword;
 import luckycoins.items.core.ModItems;
 import luckycoins.misc.ModDamageSources;
 import luckycoins.misc.ModPotions;
-import luckycoins.network.PacketHandler;
-import luckycoins.network.packet.PacketSplashWarning;
-import luckycoins.thread.ThreadOneWithNature;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
@@ -27,10 +27,13 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
+import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ChestGenHooks;
 import cpw.mods.fml.common.Loader;
 import danylibs.LocalizationHelper;
+import danylibs.PlayerUtils;
 
 public class CoinRegistry
 {
@@ -139,6 +142,10 @@ public class CoinRegistry
 		CoinBase UNFAIR_ADVANTAGE = new CoinUnfairAdvantage().setName("UNFAIR_ADVANTAGE").setRarity(EnumCoinRarity.COMMON).registerCoin();
 		CoinBase DONT_NEED_CAR = new CoinDontNeedCar().setName("DONT_NEED_CAR").setRarity(EnumCoinRarity.COMMON).registerCoin();
 		CoinBase ONE_WITH_NATURE = new CoinOneWithNature().setName("ONE_WITH_NATURE").setRarity(EnumCoinRarity.RARE).registerCoin();
+		CoinBase DUNGEONS_ARE_NASTY = new CoinDungeonsAreNasty().setName("DUNGEONS_ARE_NASTY").setRarity(EnumCoinRarity.RARE).registerCoin();
+		CoinBase SPECTRAL_KNIGHT = new CoinSpectralKnight().setName("SPECTRAL_KNIGHT").setRarity(EnumCoinRarity.EPIC).registerCoin();
+		
+		CoinBase LEGEND = new CoinLegend().setName("LEGEND").setRarity(EnumCoinRarity.LEGENDARY).registerCoin();
 	}
 	
 	private static class CoinInnerRage extends CoinBase
@@ -288,8 +295,10 @@ public class CoinRegistry
 				horse.setPosition(player.posX, player.posY, player.posZ);
 			}
 			horse.setHorseTamed(true);
+			horse.setTamedBy(player);
 			horse.setHorseSaddled(true);
 			horse.func_146086_d(new ItemStack(Items.iron_horse_armor));
+			world.spawnEntityInWorld(horse);
 			return true;
 		}
 	}
@@ -323,16 +332,98 @@ public class CoinRegistry
 		public boolean action(World world, EntityPlayer player,
 				MovingObjectPosition mop)
 		{
-			if (player instanceof EntityPlayerMP)
+			PlayerUtils.print(player, "IT'S NOT WORKING! I'LL GO YELL AT MOD AUTHOR THAT I'M TOTALLY BLIND AND DON'T EVEN KNOW WHAT NYI MEANS");
+			PlayerUtils.print(player, "I mean. This is not implemented yet. But you have a nice rare coin that doesn't do anything. Nice?");
+			return false;
+		}
+	}
+	
+	private static class CoinDungeonsAreNasty extends CoinBase
+	{
+		@Override
+		public boolean action(World world, EntityPlayer player,
+				MovingObjectPosition mop)
+		{
+			if (mop != null && mop.typeOfHit == MovingObjectType.BLOCK)
 			{
-				PacketHandler.instance().net.sendTo(new PacketSplashWarning.MessageSplashWarning((byte)0, (byte)1), (EntityPlayerMP)player);
+				int x = mop.blockX;
+				int y = mop.blockY;
+				int z = mop.blockZ;
+				switch (mop.sideHit)
+				{
+				case 0:
+					y--; break;
+				case 1:
+					y++; break;
+				case 2:
+					z--; break;
+				case 3:
+					z++; break;
+				case 4:
+					x--; break;
+				case 5:
+					x++; break;
+				}
+				if (world.isAirBlock(x, y, z))
+				{
+					world.setBlock(x, y, z, Blocks.chest);
+					world.setBlockMetadataWithNotify(x, y, z, world.rand.nextInt(4), 3);
+					IInventory chestInventory = (IInventory)world.getTileEntity(x, y, z);
+					WeightedRandomChestContent[] content = ChestGenHooks.getItems(ChestGenHooks.DUNGEON_CHEST, world.rand);
+					WeightedRandomChestContent.generateChestContents(world.rand, content, chestInventory, ChestGenHooks.getCount(ChestGenHooks.DUNGEON_CHEST, world.rand));
+					return true;
+				}
 			}
-			Thread thread = new ThreadOneWithNature(player, RNG);
-			thread.run();
-			if (player instanceof EntityPlayerMP)
+			return false;
+		}
+	}
+	
+	private static class CoinSpectralKnight extends CoinBase
+	{
+		@Override
+		public boolean action(World world, EntityPlayer player,
+				MovingObjectPosition mop)
+		{
+			ItemStack sword = ItemSpectralSword.getSpectralSwordStack();
+			EntityItem item = new EntityItem(world, player.posX, player.posY, player.posZ, sword);
+			world.spawnEntityInWorld(item);
+			item.onCollideWithPlayer(player);
+			return true;
+		}
+	}
+	
+	private static class CoinLegend extends CoinBase
+	{
+		@Override
+		public boolean action(World world, EntityPlayer player,
+				MovingObjectPosition mop)
+		{
+			LuckyCoinsData data = LuckyCoinsData.get(player);
+			if (data.the_legend)
 			{
-				PacketHandler.instance().net.sendTo(new PacketSplashWarning.MessageSplashWarning((byte)0, (byte)0), (EntityPlayerMP)player);
+				return false;
 			}
+			data.the_legend = true;
+			try
+			{
+				Class.forName("net.minecraftforge.cauldron.configuration.CauldronConfig");
+				PlayerUtils.print(player, LocalizationHelper.get("message.the_legend.cauldron"));
+			}
+			catch (Throwable t)
+			{
+				// not a cauldron
+			}
+			return true;
+		}
+	}
+	
+	private static class CoinOxygenNotThing extends CoinBase
+	{
+		@Override
+		public boolean action(World world, EntityPlayer player,
+				MovingObjectPosition mop)
+		{
+			
 			return true;
 		}
 	}

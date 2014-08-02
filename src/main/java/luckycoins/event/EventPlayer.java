@@ -83,7 +83,7 @@ public class EventPlayer
 		{
 			data.dailyData = new DailyQuestData(LuckyCoins.quests.getCurrentDailyQuest());
 			PlayerUtils.print(e.player, Paragraph.gold + MessageRefs.DAILY_QUEST_CHANGED_1);
-			PlayerUtils.print(e.player, Paragraph.gold + String.format(MessageRefs.DAILY_QUEST_CHANGED_2, Keyboard.getKeyName(LuckyCoins.keybinds.keyGui.getKeyCode())));
+			PlayerUtils.print(e.player, Paragraph.gold + String.format(MessageRefs.DAILY_QUEST_CHANGED_2, Keyboard.getKeyName(LuckyCoins.keybinds.keyDaily.getKeyCode())));
 		}
 	}
 	
