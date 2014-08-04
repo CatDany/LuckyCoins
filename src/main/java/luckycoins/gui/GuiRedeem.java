@@ -33,7 +33,7 @@ public class GuiRedeem extends ModGui
 		field.setFocused(true);
 		String clipboard = "";
 		clipboard = getClipboardString();
-		if (!clipboard.matches("[a-zA-Z0-9]{20}"))
+		if (!clipboard.matches("^[a-zA-Z0-9]{20}$"))
 		{
 			clipboard = "";
 		}
