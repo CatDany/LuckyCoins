@@ -4,22 +4,27 @@ import java.util.List;
 
 import luckycoins.LuckyCoins;
 import luckycoins.core.DailyQuest;
-import luckycoins.core.LuckyCoinsData;
+import net.minecraft.block.BlockCake;
+import net.minecraft.entity.boss.EntityWither;
+import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.passive.EntityOcelot;
+import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraftforge.event.CommandEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
+import net.minecraftforge.event.entity.player.EntityInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import net.minecraftforge.event.world.BlockEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import danylibs.PlayerUtils;
+import danylibs.ItemUtils;
 
 public class EventDailyQuests
 {
@@ -78,7 +83,62 @@ public class EventDailyQuests
 		if (e.entity instanceof EntityMob && e.source.getEntity() != null && e.source.getEntity() instanceof EntityPlayer)
 		{
 			EntityPlayer source = (EntityPlayer)e.source.getEntity();
-			LuckyCoins.quests.triggerDailyQuest(source, DailyQuest.KNOCKDOWN, (int)(e.ammount * 2));
+			LuckyCoins.quests.triggerDailyQuest(source, DailyQuest.KNOCKDOWN, (int)e.ammount);
+		}
+	}
+	
+	@SubscribeEvent
+	public void FEED(EntityInteractEvent e)
+	{
+		if (e.entity.worldObj.isRemote)
+			return;
+		
+		ItemStack stack = e.entityPlayer.inventory.getCurrentItem();
+		if (e.target instanceof EntityWolf)
+		{
+			EntityWolf wolf = (EntityWolf)e.target;
+			if (wolf.isTamed())
+			{
+				if (stack != null && ItemUtils.compare(stack.getItem(), Items.bone))
+				{
+					LuckyCoins.quests.triggerDailyQuest(e.entityPlayer, DailyQuest.FEED, 1);
+				}
+			}
+		}
+		else if (e.target instanceof EntityOcelot)
+		{
+			EntityOcelot ocelot = (EntityOcelot)e.target;
+			if (ocelot.isTamed())
+			{
+				if (stack != null && ItemUtils.compare(stack.getItem(), Items.fish))
+				{
+					LuckyCoins.quests.triggerDailyQuest(e.entityPlayer, DailyQuest.FEED, 1);
+				}
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	public void EAT_CAKE(PlayerInteractEvent e)
+	{
+		if (e.entity.worldObj.isRemote)
+			return;
+		
+		if (e.action == Action.RIGHT_CLICK_BLOCK)
+		{
+			if (e.world.getBlock(e.x, e.y, e.z) instanceof BlockCake)
+			{
+				LuckyCoins.quests.triggerDailyQuest(e.entityPlayer, DailyQuest.EAT_CAKE, 1);
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	public void ENDERMEN_KILL(LivingDeathEvent e)
+	{
+		if (!e.entity.worldObj.isRemote && e.entity.worldObj.provider.dimensionId == 0 && e.entityLiving instanceof EntityEnderman && e.source.getEntity() != null && e.source.getEntity() instanceof EntityPlayer)
+		{
+			LuckyCoins.quests.triggerDailyQuest((EntityPlayer)e.source.getEntity(), DailyQuest.ENDERMEN_KILL, 1);
 		}
 	}
 }

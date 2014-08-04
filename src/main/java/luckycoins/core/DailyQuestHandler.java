@@ -72,5 +72,8 @@ public class DailyQuestHandler
 		list.add(DailyQuest.ZOMBIE_HEAL);
 		list.add(DailyQuest.HARVESTER);
 		list.add(DailyQuest.KNOCKDOWN);
+		list.add(DailyQuest.FEED);
+		list.add(DailyQuest.EAT_CAKE);
+		list.add(DailyQuest.ENDERMEN_KILL);
 	}	
 }

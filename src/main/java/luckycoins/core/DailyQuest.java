@@ -9,7 +9,10 @@ public class DailyQuest
 	public static final DailyQuest PLAYER_KILL = new DailyQuest("PLAYER_KILL", 50, 3);
 	public static final DailyQuest ZOMBIE_HEAL = new DailyQuest("ZOMBIE_HEAL", 70, 1);
 	public static final DailyQuest HARVESTER = new DailyQuest("HARVESTER", 50, 50);
-	public static final DailyQuest KNOCKDOWN = new DailyQuest("KNOCKDOWN", 60, 150);
+	public static final DailyQuest KNOCKDOWN = new DailyQuest("KNOCKDOWN", 60, 500);
+	public static final DailyQuest FEED = new DailyQuest("FEED", 70, 16);
+	public static final DailyQuest EAT_CAKE = new DailyQuest("EAT_CAKE", 50, 16);
+	public static final DailyQuest ENDERMEN_KILL = new DailyQuest("ENDERMEN_KILL", 60, 3);
 	
 	public final int index;
 	public final String name;

@@ -144,8 +144,9 @@ public class CoinRegistry
 		CoinBase ONE_WITH_NATURE = new CoinOneWithNature().setName("ONE_WITH_NATURE").setRarity(EnumCoinRarity.RARE).registerCoin();
 		CoinBase DUNGEONS_ARE_NASTY = new CoinDungeonsAreNasty().setName("DUNGEONS_ARE_NASTY").setRarity(EnumCoinRarity.RARE).registerCoin();
 		CoinBase SPECTRAL_KNIGHT = new CoinSpectralKnight().setName("SPECTRAL_KNIGHT").setRarity(EnumCoinRarity.EPIC).registerCoin();
-		
 		CoinBase LEGEND = new CoinLegend().setName("LEGEND").setRarity(EnumCoinRarity.LEGENDARY).registerCoin();
+		CoinBase OXYGEN_NOT_THING = new CoinOxygenNotThing().setName("OXYGEN_NOT_THING").setRarity(EnumCoinRarity.COMMON).registerCoin();
+		CoinBase WEB_WRAP = new CoinWebWrap().setName("WEB_WRAP").setRarity(EnumCoinRarity.COMMON).registerCoin();
 	}
 	
 	private static class CoinInnerRage extends CoinBase
@@ -298,6 +299,8 @@ public class CoinRegistry
 			horse.setTamedBy(player);
 			horse.setHorseSaddled(true);
 			horse.func_146086_d(new ItemStack(Items.iron_horse_armor));
+			horse.horseChest.setInventorySlotContents(0, new ItemStack(Items.saddle));
+			horse.horseChest.setInventorySlotContents(1, new ItemStack(Items.iron_horse_armor));
 			world.spawnEntityInWorld(horse);
 			return true;
 		}
@@ -423,7 +426,19 @@ public class CoinRegistry
 		public boolean action(World world, EntityPlayer player,
 				MovingObjectPosition mop)
 		{
-			
+			player.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 8 * 60 * 20, 0, true));
+			player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 8 * 60 * 20, 0, true));
+			return true;
+		}
+	}
+	
+	private static class CoinWebWrap extends CoinBase
+	{
+		@Override
+		public boolean action(World world, EntityPlayer player,
+				MovingObjectPosition mop)
+		{
+			world.spawnEntityInWorld(new EntityProjectile(world, player).setType("WEB_WRAP"));
 			return true;
 		}
 	}
