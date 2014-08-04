@@ -24,6 +24,7 @@ public class GuiDailyQuest extends ModGui
 	@Override
 	public void initGui()
 	{
+		super.initGui();
 		buttonList.add(new GuiButton(0, width / 2 - 70, 150, 140, 20, GuiRefs.BACK));
 	}
 	

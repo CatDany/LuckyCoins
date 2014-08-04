@@ -2,7 +2,9 @@ package luckycoins.core;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Random;
 
 import luckycoins.LuckyCoins;
@@ -12,6 +14,9 @@ import luckycoins.items.ItemSpectralSword;
 import luckycoins.items.core.ModItems;
 import luckycoins.misc.ModDamageSources;
 import luckycoins.misc.ModPotions;
+import net.minecraft.block.Block;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntityWitch;
@@ -31,6 +36,8 @@ import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import cpw.mods.fml.common.Loader;
 import danylibs.LocalizationHelper;
 import danylibs.PlayerUtils;
@@ -147,6 +154,10 @@ public class CoinRegistry
 		CoinBase LEGEND = new CoinLegend().setName("LEGEND").setRarity(EnumCoinRarity.LEGENDARY).registerCoin();
 		CoinBase OXYGEN_NOT_THING = new CoinOxygenNotThing().setName("OXYGEN_NOT_THING").setRarity(EnumCoinRarity.COMMON).registerCoin();
 		CoinBase WEB_WRAP = new CoinWebWrap().setName("WEB_WRAP").setRarity(EnumCoinRarity.COMMON).registerCoin();
+		CoinBase MYST_BUCKET = new CoinMystBucket().setName("MYST_BUCKET").setRarity(EnumCoinRarity.COMMON).registerCoin();
+		//CoinBase RAIN_OR_NOT = new CoinRainOrNot().setName("RAIN_OR_NOT").setRarity(EnumCoinRarity.RARE).registerCoin();
+		CoinBase BREAK_IT_DOWN = new CoinBreakItDown().setName("BREAK_IT_DOWN").setRarity(EnumCoinRarity.COMMON).registerCoin();
+		CoinBase SHIELDS_UP = new CoinShieldsUp().setName("SHIELDS_UP").setRarity(EnumCoinRarity.COMMON).registerCoin();
 	}
 	
 	private static class CoinInnerRage extends CoinBase
@@ -439,6 +450,101 @@ public class CoinRegistry
 				MovingObjectPosition mop)
 		{
 			world.spawnEntityInWorld(new EntityProjectile(world, player).setType("WEB_WRAP"));
+			return true;
+		}
+	}
+	
+	private static class CoinMystBucket extends CoinBase
+	{
+		@Override
+		public boolean action(World world, EntityPlayer player,
+				MovingObjectPosition mop)
+		{
+			if (mop != null && mop.typeOfHit == MovingObjectType.BLOCK)
+			{
+				int x = mop.blockX;
+				int y = mop.blockY;
+				int z = mop.blockZ;
+				switch (mop.sideHit)
+				{
+				case 0:
+					y--; break;
+				case 1:
+					y++; break;
+				case 2:
+					z--; break;
+				case 3:
+					z++; break;
+				case 4:
+					x--; break;
+				case 5:
+					x++; break;
+				}
+				if (!world.isAirBlock(x, y, z))
+					return false;
+				List<Block> fluids = new ArrayList<Block>();
+				Iterator<Entry<String, Fluid>> ifluid = FluidRegistry.getRegisteredFluids().entrySet().iterator();
+				while (ifluid.hasNext())
+				{
+					fluids.add(ifluid.next().getValue().getBlock());
+				}
+				Block fluidRandom = fluids.get(RNG.nextInt(fluids.size()));
+				world.setBlock(x, y, z, fluidRandom);
+				return true;
+			}
+			return false;
+		}
+	}
+	
+	@Deprecated
+	private static class CoinRainOrNot extends CoinBase
+	{
+		@Override
+		public boolean action(World world, EntityPlayer player,
+				MovingObjectPosition mop)
+		{
+			if (world.isRaining() || world.isThundering())
+			{
+				world.getWorldInfo().setRaining(false);
+				world.getWorldInfo().setThundering(false);
+				world.getWorldInfo().setRainTime(60 * 60 * 20);
+			}
+			else
+			{
+				world.getWorldInfo().setThundering(true);
+			}
+			return true;
+		}
+	}
+	
+	private static class CoinBreakItDown extends CoinBase
+	{
+		@Override
+		public boolean action(World world, EntityPlayer player,
+				MovingObjectPosition mop)
+		{
+			if (mop != null && mop.typeOfHit == MovingObjectType.BLOCK)
+			{
+				int x = mop.blockX;
+				int y = mop.blockY;
+				int z = mop.blockZ;
+				if (world.getTileEntity(x, y, z) == null)
+				{
+					world.setBlock(x, y, z, Blocks.air);
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+	
+	private static class CoinShieldsUp extends CoinBase
+	{
+		@Override
+		public boolean action(World world, EntityPlayer player,
+				MovingObjectPosition mop)
+		{
+			player.addPotionEffect(new PotionEffect(Potion.field_76434_w.id, 3 * 60 * 20, 0, true));
 			return true;
 		}
 	}

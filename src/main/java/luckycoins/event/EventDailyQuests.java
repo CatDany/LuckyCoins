@@ -14,6 +14,7 @@ import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -99,7 +100,7 @@ public class EventDailyQuests
 			EntityWolf wolf = (EntityWolf)e.target;
 			if (wolf.isTamed())
 			{
-				if (stack != null && ItemUtils.compare(stack.getItem(), Items.bone))
+				if (stack != null && stack.getItem() instanceof ItemFood && ((ItemFood)stack.getItem()).isWolfsFavoriteMeat())
 				{
 					LuckyCoins.quests.triggerDailyQuest(e.entityPlayer, DailyQuest.FEED, 1);
 				}

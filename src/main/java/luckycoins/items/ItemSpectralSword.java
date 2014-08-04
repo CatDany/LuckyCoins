@@ -31,19 +31,7 @@ public class ItemSpectralSword extends ModItemSword
 		int ticks = stack.getTagCompound().getInteger("TicksLeft");
 		int minutes = ticks / 20 / 60;
 		int seconds = ticks / 20;
-		
-		if (minutes > 0)
-		{
-			list.add(LocalizationHelper.get("tooltip.spectral_sword.minutes", minutes));
-		}
-		else if (seconds > 0)
-		{
-			list.add(LocalizationHelper.get("tooltip.spectral_sword.seconds", seconds));
-		}
-		else
-		{
-			list.add(LocalizationHelper.get("tooltip.spectral_sword.ticks", ticks));
-		}
+		list.add(LocalizationHelper.get("tooltip.spectral_sword.tooltip", minutes, seconds - minutes * 60));
 	}
 	
 	@Override
