@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import luckycoins.LuckyCoins;
-import luckycoins.api.CoinBase;
-import luckycoins.api.CoinBase.EnumCoinRarity;
+import luckycoins.core.CoinBase.EnumCoinRarity;
 import luckycoins.entity.EntityProjectile;
 import luckycoins.items.ItemSpectralSword;
 import luckycoins.items.core.ModItems;
