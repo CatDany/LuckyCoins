@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import luckycoins.Configuration;
-import luckycoins.core.CoinBase;
+import luckycoins.api.CoinBase;
 import luckycoins.core.CoinRegistry;
 import luckycoins.items.core.ModItemBase;
 import luckycoins.misc.ModCreativeTab;

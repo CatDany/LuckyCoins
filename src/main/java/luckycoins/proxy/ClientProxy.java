@@ -1,9 +1,5 @@
 package luckycoins.proxy;
 
-import net.minecraft.client.model.ModelHorse;
-import net.minecraft.client.renderer.entity.RenderHorse;
-import luckycoins.entity.EntityHorseCoin;
-import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;

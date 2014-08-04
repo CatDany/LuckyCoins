@@ -1,5 +1,6 @@
-package luckycoins.core;
+package luckycoins.api;
 
+import luckycoins.core.CoinRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
@@ -35,7 +36,7 @@ public abstract class CoinBase
 	
 	public CoinBase registerCoin()
 	{
-		CoinRegistry.registerCoin(this);
+		ApiManager.getApi().registerCoin(this);
 		return this;
 	}
 	
