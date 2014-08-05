@@ -4,7 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import danylibs.LocalizationHelper;
+import danylibs_luckycoins.LocalizationHelper;
 
 public abstract class CoinBase
 {

@@ -1,4 +1,4 @@
-package danylibs;
+package danylibs_luckycoins;
 
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;

@@ -39,8 +39,8 @@ import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import cpw.mods.fml.common.Loader;
-import danylibs.LocalizationHelper;
-import danylibs.PlayerUtils;
+import danylibs_luckycoins.LocalizationHelper;
+import danylibs_luckycoins.PlayerUtils;
 
 public class CoinRegistry
 {
@@ -63,20 +63,20 @@ public class CoinRegistry
 	
 	public static EnumCoinRarity getRandomRarity()
 	{
-		int hit = RNG.nextInt(100);
-		if (hit < 64)
+		int hit = RNG.nextInt(200);
+		if (hit < 169)
 		{
 			return EnumCoinRarity.COMMON;
 		}
-		else if (hit >= 64 && hit < 89)
+		else if (hit >= 169 && hit < 194)
 		{
 			return EnumCoinRarity.RARE;
 		}
-		else if (hit >= 89 && hit < 99)
+		else if (hit >= 194 && hit < 199)
 		{
 			return EnumCoinRarity.EPIC;
 		}
-		else if (hit == 99)
+		else if (hit == 199)
 		{
 			return EnumCoinRarity.LEGENDARY;
 		}
@@ -167,7 +167,7 @@ public class CoinRegistry
 				MovingObjectPosition mop)
 		{
 			player.attackEntityFrom(ModDamageSources.causeDamage(ModDamageSources.damageInnerrage, player), 4);
-			player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 10 * 20, 1, true));
+			CoinHelper.applyPotionEffect(player, Potion.damageBoost, 10 * 20, 1, true);
 			return true;
 		}
 	}
@@ -191,10 +191,10 @@ public class CoinRegistry
 		{
 			if (!player.isPotionActive(ModPotions.step_assist))
 			{
-				player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 10 * 60 * 20, 2, true));
-				player.addPotionEffect(new PotionEffect(Potion.jump.id, 10 * 60 * 20, 1, true));
-				player.addPotionEffect(new PotionEffect(ModPotions.step_assist.id, 10 * 60 * 20, 0, true));
-				return true;
+				boolean b0 = CoinHelper.applyPotionEffect(player, Potion.moveSpeed, 10 * 60 * 20, 2, true);
+				boolean b1 = CoinHelper.applyPotionEffect(player, Potion.jump, 10 * 60 * 20, 1, true);
+				boolean b2 = CoinHelper.applyPotionEffect(player, ModPotions.step_assist, 10 * 60 * 20, 0, true);
+				return b0 || b1 || b2;
 			}
 			else
 			{
@@ -211,6 +211,7 @@ public class CoinRegistry
 		{
 			AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(player.posX - 4.5, player.posY - 4.5, player.posZ - 4.5, player.posX + 4.5, player.posY + 4.5, player.posZ + 4.5);
 			List<EntityMob> list = world.getEntitiesWithinAABB(EntityMob.class, aabb);
+			boolean killed = false;
 			for (EntityMob i : list)
 			{
 				i.attackEntityFrom(ModDamageSources.causeDamage(ModDamageSources.damageBlankSlate, player), Float.MAX_VALUE);
@@ -218,8 +219,9 @@ public class CoinRegistry
 				{
 					i.setHealth(0);
 				}
+				killed = true;
 			}
-			return true;
+			return killed;
 		}
 	}
 	
@@ -237,17 +239,11 @@ public class CoinRegistry
 			{
 				EntityWitch witch = new EntityWitch(world);
 				witch.setPosition(player.posX, player.posY, player.posZ);
-				witch.setCustomNameTag(getRandomWitchName());
+				witch.setCustomNameTag(CoinHelper.getRandomWitchName(RNG));
 				witch.setAggressive(false);
 				world.spawnEntityInWorld(witch);
 				return true;
 			}
-		}
-		
-		private String getRandomWitchName()
-		{
-			int hit = RNG.nextInt(8) + 1;
-			return LocalizationHelper.get("coin.COMMON.REINFORCE.data.witchName." + hit);
 		}
 	}
 	
@@ -257,7 +253,7 @@ public class CoinRegistry
 		public boolean action(World world, EntityPlayer player,
 				MovingObjectPosition mop)
 		{
-			player.addPotionEffect(new PotionEffect(Potion.jump.id, 15 * 20, 2, true));
+			CoinHelper.applyPotionEffect(player, Potion.jump, 15 * 20, 2, true);
 			return true;
 		}
 	}
@@ -324,7 +320,7 @@ public class CoinRegistry
 				MovingObjectPosition mop)
 		{
 			player.setHealth(player.getMaxHealth());
-			player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 6 * 20, 3, true));
+			CoinHelper.applyPotionEffect(player, Potion.regeneration, 6 * 20, 3, true);
 			return true;
 		}
 	}
@@ -335,7 +331,7 @@ public class CoinRegistry
 		public boolean action(World world, EntityPlayer player,
 				MovingObjectPosition mop)
 		{
-			player.addPotionEffect(new PotionEffect(Potion.invisibility.id, 3 * 60 * 20, 3, true));
+			CoinHelper.applyPotionEffect(player, Potion.invisibility, 3 * 60 * 20, 3, true);
 			return true;
 		}
 	}
@@ -345,9 +341,7 @@ public class CoinRegistry
 		@Override
 		public boolean action(World world, EntityPlayer player,
 				MovingObjectPosition mop)
-		{
-			PlayerUtils.print(player, "IT'S NOT WORKING! I'LL GO YELL AT MOD AUTHOR THAT I'M TOTALLY BLIND AND DON'T EVEN KNOW WHAT NYI MEANS");
-			PlayerUtils.print(player, "I mean. This is not implemented yet. But you have a nice rare coin that doesn't do anything. Nice?");
+		{PlayerUtils.print(player, "This is not yet implemented (NYI). But you have a nice rare coin that doesn't do anything. Nice?");
 			return false;
 		}
 	}
@@ -422,12 +416,12 @@ public class CoinRegistry
 			{
 				Class.forName("net.minecraftforge.cauldron.configuration.CauldronConfig");
 				PlayerUtils.print(player, LocalizationHelper.get("message.the_legend.cauldron"));
+				return false;
 			}
 			catch (Throwable t)
 			{
-				// not a cauldron
+				return true;
 			}
-			return true;
 		}
 	}
 	
@@ -437,8 +431,8 @@ public class CoinRegistry
 		public boolean action(World world, EntityPlayer player,
 				MovingObjectPosition mop)
 		{
-			player.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 8 * 60 * 20, 0, true));
-			player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 8 * 60 * 20, 0, true));
+			CoinHelper.applyPotionEffect(player, Potion.fireResistance, 8 * 60 * 20, 0, true);
+			CoinHelper.applyPotionEffect(player, Potion.waterBreathing, 8 * 60 * 20, 0, true);
 			return true;
 		}
 	}
@@ -496,6 +490,7 @@ public class CoinRegistry
 		}
 	}
 	
+	/*
 	@Deprecated
 	private static class CoinRainOrNot extends CoinBase
 	{
@@ -516,6 +511,7 @@ public class CoinRegistry
 			return true;
 		}
 	}
+	*/
 	
 	private static class CoinBreakItDown extends CoinBase
 	{
@@ -544,7 +540,7 @@ public class CoinRegistry
 		public boolean action(World world, EntityPlayer player,
 				MovingObjectPosition mop)
 		{
-			player.addPotionEffect(new PotionEffect(Potion.field_76434_w.id, 3 * 60 * 20, 0, true));
+			CoinHelper.applyPotionEffect(player, Potion.field_76434_w, 3 * 60 * 20, 0, true);
 			return true;
 		}
 	}

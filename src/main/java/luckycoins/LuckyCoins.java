@@ -29,7 +29,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.relauncher.Side;
-import danylibs.EventBusHelper;
+import danylibs_luckycoins.EventBusHelper;
 
 @Mod
 (

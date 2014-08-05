@@ -19,9 +19,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import danylibs.IconRegHelper;
-import danylibs.KeyBoardHelper;
-import danylibs.Paragraph;
+import danylibs_luckycoins.IconRegHelper;
+import danylibs_luckycoins.KeyBoardHelper;
+import danylibs_luckycoins.Paragraph;
 
 public class ItemCoin extends ModItemBase
 {

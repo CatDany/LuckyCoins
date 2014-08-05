@@ -15,9 +15,9 @@ import org.lwjgl.input.Keyboard;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
-import danylibs.LocalizationHelper;
-import danylibs.Paragraph;
-import danylibs.PlayerUtils;
+import danylibs_luckycoins.LocalizationHelper;
+import danylibs_luckycoins.Paragraph;
+import danylibs_luckycoins.PlayerUtils;
 
 public class EventPlayer
 {

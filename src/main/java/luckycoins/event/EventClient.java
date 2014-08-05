@@ -8,7 +8,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
-import danylibs.LocalizationHelper;
+import danylibs_luckycoins.LocalizationHelper;
 
 public class EventClient
 {

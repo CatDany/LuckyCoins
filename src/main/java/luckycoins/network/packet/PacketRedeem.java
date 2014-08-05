@@ -10,10 +10,10 @@ import luckycoins.network.packet.PacketRedeem.MessageRedeem;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import danylibs.InternetHelper;
-import danylibs.LocalizationHelper;
-import danylibs.Paragraph;
-import danylibs.PlayerUtils;
+import danylibs_luckycoins.InternetHelper;
+import danylibs_luckycoins.LocalizationHelper;
+import danylibs_luckycoins.Paragraph;
+import danylibs_luckycoins.PlayerUtils;
 
 public class PacketRedeem implements IMessageHandler<MessageRedeem, IMessage>
 {

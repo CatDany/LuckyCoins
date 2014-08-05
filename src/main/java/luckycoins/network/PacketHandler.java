@@ -4,11 +4,12 @@ import io.netty.buffer.ByteBuf;
 import luckycoins.Refs;
 import luckycoins.network.packet.PacketBuyBox;
 import luckycoins.network.packet.PacketDataSync;
+import luckycoins.network.packet.PacketLootBox;
 import luckycoins.network.packet.PacketRedeem;
 import luckycoins.network.packet.PacketResult;
 import luckycoins.network.packet.PacketSplashWarning;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import danylibs.NetworkHelper;
+import danylibs_luckycoins.NetworkHelper;
 
 public class PacketHandler
 {
@@ -27,6 +28,7 @@ public class PacketHandler
 		helper.registerMessage(2, PacketDataSync.class, PacketDataSync.MessageDataSync.class);
 		helper.registerMessage(3, PacketBuyBox.class, PacketBuyBox.MessageBuyBox.class);
 		helper.registerMessage(4, PacketSplashWarning.class, PacketSplashWarning.MessageSplashWarning.class);
+		helper.registerMessage(5, PacketLootBox.class, PacketLootBox.MessageLootBox.class);
 	}
 	
 	public static PacketHandler instance()

@@ -1,4 +1,4 @@
-package danylibs;
+package danylibs_luckycoins;
 
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;

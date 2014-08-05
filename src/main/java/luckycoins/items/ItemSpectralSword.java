@@ -2,13 +2,18 @@ package luckycoins.items;
 
 import java.util.List;
 
-import danylibs.LocalizationHelper;
+import danylibs_luckycoins.LocalizationHelper;
 import luckycoins.items.core.ModItemSword;
 import luckycoins.items.core.ModItems;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.passive.EntityBat;
+import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -16,7 +21,7 @@ import net.minecraftforge.common.util.EnumHelper;
 
 public class ItemSpectralSword extends ModItemSword
 {
-	public static final ToolMaterial mat = EnumHelper.addToolMaterial("SpectalSword", 0, 1000, 0, 3.5F, 0);
+	public static final ToolMaterial mat = EnumHelper.addToolMaterial("SpectalSword", 0, 1, 0, 3.5F, 0);
 	
 	public ItemSpectralSword(String unlocName)
 	{
@@ -41,12 +46,12 @@ public class ItemSpectralSword extends ModItemSword
 		if (ticks > 0)
 		{
 			ticks--;
+			stack.getTagCompound().setInteger("TicksLeft", ticks);
 		}
 		else
 		{
-			stack.stackSize = 0;
+			stack.func_150996_a(Items.stick);
 		}
-		stack.getTagCompound().setInteger("TicksLeft", ticks);
 	}
 	
 	@Override

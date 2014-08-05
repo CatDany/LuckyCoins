@@ -1,4 +1,4 @@
-package danylibs;
+package danylibs_luckycoins;
 
 import java.util.ArrayList;
 import java.util.List;

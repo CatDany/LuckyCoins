@@ -1,11 +1,12 @@
 package luckycoins.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import luckycoins.core.LuckyCoinsData;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
+
+import org.lwjgl.opengl.GL11;
+
+import danylibs_luckycoins.KeyBoardHelper;
 
 public class GuiDailyQuest extends ModGui
 {
@@ -48,6 +49,11 @@ public class GuiDailyQuest extends ModGui
 		drawCenteredString(fontRendererObj, "\"" + LuckyCoinsData.CLIENT_DAILY_QUEST.getTranslatedQuestDescription() + "\"", width / 2, 95, 0xffffff);
 		drawCenteredString(fontRendererObj, LuckyCoinsData.CLIENT_DAILY_COMPLETED + "/" + LuckyCoinsData.CLIENT_DAILY_QUEST.max, width / 2, 110, color1);
 		drawCenteredString(fontRendererObj, String.format("Reward: %s gold", LuckyCoinsData.CLIENT_DAILY_QUEST.reward), width / 2, 125, 0xffbb00);
+		
+		if (KeyBoardHelper.isShiftDown())
+		{
+			drawString(fontRendererObj, LuckyCoinsData.CLIENT_TIME_AND_DATE, 5, 5, 0xffffff);
+		}
 	}
 	
 	@Override

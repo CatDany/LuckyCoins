@@ -1,7 +1,8 @@
-@ What does this version number mean (major.minor.revision.build)?
-1. Major: Huge change to a mod
-2. Minor: Major Minecraft update
-3. Revision: Important changes to a mod
-4. Build: Whenever I end working on a mod (e.g. every day). Also independent 
+@ What does this version number mean?
+1. State: 'd' means indev, 'a' means alpha, 'b' means beta, 'r' means release
+2. Major: major changes to a mod
+3. Minor: important changes to a mod
+4. Build: Whenever I end working on a mod (e.g. every day). Also independent from the other ones
 
-Current version: build 8 of 0.1.0
+a1.0-1 (2014/08/05 ...)
+- Initial alpha release

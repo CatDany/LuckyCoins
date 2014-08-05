@@ -25,7 +25,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import net.minecraftforge.event.world.BlockEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import danylibs.ItemUtils;
+import danylibs_luckycoins.ItemUtils;
 
 public class EventDailyQuests
 {

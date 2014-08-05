@@ -78,4 +78,6 @@ public class LuckyCoinsData implements IExtendedEntityProperties
 	public static DailyQuest CLIENT_DAILY_QUEST = DailyQuest.PLAYER_KILL;
 	@SideOnly(Side.CLIENT)
 	public static int CLIENT_DAILY_COMPLETED = 0;
+	@SideOnly(Side.CLIENT)
+	public static String CLIENT_TIME_AND_DATE = "Updating...";
 }

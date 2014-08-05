@@ -1,4 +1,4 @@
-package danylibs;
+package danylibs_luckycoins;
 
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.server.CommandBlockLogic;

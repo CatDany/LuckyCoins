@@ -1,6 +1,6 @@
 package luckycoins.core;
 
-import danylibs.LocalizationHelper;
+import danylibs_luckycoins.LocalizationHelper;
 
 public class DailyQuest
 {

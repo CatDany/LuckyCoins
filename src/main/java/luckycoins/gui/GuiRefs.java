@@ -3,7 +3,7 @@ package luckycoins.gui;
 import net.minecraft.util.StatCollector;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import danylibs.LocalizationHelper;
+import danylibs_luckycoins.LocalizationHelper;
 
 @SideOnly(Side.CLIENT)
 public class GuiRefs
@@ -13,6 +13,8 @@ public class GuiRefs
 	public static final String REDEEM_CODE = LocalizationHelper.get("gui.main.redeem_code");
 	public static final String DAILY_QUESTS = LocalizationHelper.get("gui.main.daily_quests");
 	public static final String HELP = LocalizationHelper.get("gui.main.help");
+	public static final String OK = LocalizationHelper.get("gui.open_loot_boxes.ok");
+	public static final String LOOT_BOX_INFO = LocalizationHelper.get("gui.open_loot_boxes.info");
 	public static final String BUY = LocalizationHelper.get("gui.shop.buy");
 	public static final String BUY_ONE = LocalizationHelper.get("gui.shop.buy_one");
 	public static final String GET_FREE_LOOT_BOXES = LocalizationHelper.get("gui.shop.free");

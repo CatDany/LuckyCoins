@@ -9,8 +9,8 @@ import java.util.Random;
 import luckycoins.LuckyCoins;
 import luckycoins.event.EventPlayer.MessageRefs;
 import net.minecraft.entity.player.EntityPlayer;
-import danylibs.Paragraph;
-import danylibs.PlayerUtils;
+import danylibs_luckycoins.Paragraph;
+import danylibs_luckycoins.PlayerUtils;
 
 public class DailyQuestHandler
 {

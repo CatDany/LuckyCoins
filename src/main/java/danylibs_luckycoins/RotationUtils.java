@@ -1,4 +1,4 @@
-package danylibs;
+package danylibs_luckycoins;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;

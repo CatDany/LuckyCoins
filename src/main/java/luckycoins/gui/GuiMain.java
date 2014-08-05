@@ -11,8 +11,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.ResourceLocation;
-import danylibs.InternetHelper;
-import danylibs.Paragraph;
+import danylibs_luckycoins.InternetHelper;
+import danylibs_luckycoins.Paragraph;
 
 public class GuiMain extends ModGui
 {
@@ -61,7 +61,7 @@ public class GuiMain extends ModGui
 		if (button.id == 0)
 			/** OPEN_LOOT_BOXES **/
 		{
-			//Minecraft.getMinecraft().displayGuiScreen(new GuiOpenLoot());
+			Minecraft.getMinecraft().displayGuiScreen(new GuiOpenLootBoxes());
 		}
 		else if (button.id == 1)
 			/** SHOP **/

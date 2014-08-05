@@ -1,4 +1,4 @@
-package danylibs;
+package danylibs_luckycoins;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
-import danylibs.EventBusHelper.EventBusType;
+import danylibs_luckycoins.EventBusHelper.EventBusType;
 
 public abstract class TickHandler
 {

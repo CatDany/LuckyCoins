@@ -12,8 +12,8 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.event.ServerChatEvent;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import danylibs.LocalizationHelper;
-import danylibs.Paragraph;
+import danylibs_luckycoins.LocalizationHelper;
+import danylibs_luckycoins.Paragraph;
 
 public class EventServer
 {
