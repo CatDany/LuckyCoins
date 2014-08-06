@@ -4,5 +4,8 @@
 3. Minor: important changes to a mod
 4. Build: Whenever I end working on a mod (e.g. every day). Also independent from the other ones
 
-a1.0-1 (2014/08/05 ...)
+a1.0-2 (2014/08/06 11:03 GMT+0)
+- Fixed NullPointer in EventPlayer.entityConstruct(...), this should solve OpenBlocks problem. But I still don't understand why does it calling EntityConstructing event for EntityLuggage on initialization.
+
+a1.0-1 (2014/08/05 14:40 GMT+0)
 - Initial alpha release

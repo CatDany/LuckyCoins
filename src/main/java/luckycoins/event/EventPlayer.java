@@ -44,6 +44,12 @@ public class EventPlayer
 	@SubscribeEvent
 	public void entityConstruct(EntityConstructing e)
 	{
+		if (e.entity == null || e.entity.worldObj == null)
+		{
+			// For some weird reason OpenBlocks calling EntityConstructing event on initialization
+			return;
+		}
+		
 		if (e.entity.worldObj.isRemote)
 			return;
 		
