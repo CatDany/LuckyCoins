@@ -46,8 +46,7 @@ public class LuckyCoins
 	public static IProxy proxy;
 	
 	public static Logger logger;
-	@SideOnly(Side.CLIENT)
-	public static final KeybindHandler keybinds = new KeybindHandler();
+	public static KeybindHandler keybinds;
 	public static final DailyQuestHandler quests = new DailyQuestHandler();
 	
 	@EventHandler
