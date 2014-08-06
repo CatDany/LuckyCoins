@@ -17,7 +17,7 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "a1.0-2"
+version = "a1.0-3"
 group= "luckycoins" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "LuckyCoins"
 
@@ -30,6 +30,13 @@ minecraft {
 
 dependencies {
 	compile files("dep/CodeChickenLib.jar", "dep/CodeChickenCore.jar", "dep/NotEnoughItems.jar", "dep/Baubles.jar", "dep/Waila.jar")
+}
+
+jar {
+    manifest {
+        attributes 'FMLCorePlugin': 'luckycoins.asm.ModContainerLuckyCoins'
+        attributes 'FMLCorePluginContainsFMLMod': 'true'
+    }
 }
 
 processResources

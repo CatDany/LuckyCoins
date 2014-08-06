@@ -4,6 +4,9 @@
 3. Minor: important changes to a mod
 4. Build: Whenever I end working on a mod (e.g. every day). Also independent from the other ones
 
+a1.0-3 (2014/08/06 12:08 GMT+0)
+- Added IFMLLoadingPlugin to load Access Transformers correctly
+
 a1.0-2 (2014/08/06 11:03 GMT+0)
 - Fixed NullPointer in EventPlayer.entityConstruct(...), this should solve OpenBlocks problem. But I still don't understand why does it calling EntityConstructing event for EntityLuggage on initialization.
 
