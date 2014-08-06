@@ -33,7 +33,7 @@ public class EventPlayer
 			PlayerUtils.print(e.player, Paragraph.cyan + MessageRefs.WELCOME_2);
 			PlayerUtils.print(e.player, Paragraph.cyan + MessageRefs.WELCOME_3);
 			PlayerUtils.print(e.player, Paragraph.cyan + MessageRefs.WELCOME_4);
-			PlayerUtils.print(e.player, Paragraph.cyan + String.format(MessageRefs.WELCOME_5, Keyboard.getKeyName(LuckyCoins.keybinds.keyGui.getKeyCode())));
+			PlayerUtils.print(e.player, Paragraph.cyan + String.format(MessageRefs.WELCOME_5, "HOME"));
 			PlayerUtils.print(e.player, Paragraph.cyan + MessageRefs.WELCOME_6);
 			
 			LuckyCoinsData.get(e.player).read_welcome_message = true;
