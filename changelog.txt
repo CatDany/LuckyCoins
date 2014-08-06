@@ -2,7 +2,10 @@
 1. State: 'd' means indev, 'a' means alpha, 'b' means beta, 'r' means release
 2. Major: major changes to a mod
 3. Minor: important changes to a mod
-4. Build: Whenever I end working on a mod (e.g. every day). Also independent from the other ones
+4. Build: Whenever the mod is built by ForgeGradle (IDE builds don't count). Also independent from the other ones
+
+a1.0-4 (2014/08/06 15:51 GMT+0)
+- Fixed server crash: NoClassDefFoundError: net/minecraft/client/settings/KeyBinding
 
 a1.0-3 (2014/08/06 12:08 GMT+0)
 - Added IFMLLoadingPlugin to load Access Transformers correctly

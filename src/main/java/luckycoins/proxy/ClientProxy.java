@@ -1,5 +1,6 @@
 package luckycoins.proxy;
 
+import luckycoins.LuckyCoins;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -11,7 +12,10 @@ public class ClientProxy implements IProxy
 	public void preInit(FMLPreInitializationEvent e) {}
 	
 	@Override
-	public void init(FMLInitializationEvent e) {}
+	public void init(FMLInitializationEvent e)
+	{
+		LuckyCoins.keybinds.initKeybindings();
+	}
 	
 	@Override
 	public void postInit(FMLPostInitializationEvent e) {}

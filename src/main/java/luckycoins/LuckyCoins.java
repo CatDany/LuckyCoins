@@ -18,8 +18,6 @@ import luckycoins.recipes.Recipes;
 
 import org.apache.logging.log4j.Logger;
 
-import com.google.common.eventbus.EventBus;
-
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -29,6 +27,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import danylibs_luckycoins.EventBusHelper;
 
 @Mod
@@ -47,6 +46,7 @@ public class LuckyCoins
 	public static IProxy proxy;
 	
 	public static Logger logger;
+	@SideOnly(Side.CLIENT)
 	public static final KeybindHandler keybinds = new KeybindHandler();
 	public static final DailyQuestHandler quests = new DailyQuestHandler();
 	
@@ -72,7 +72,6 @@ public class LuckyCoins
 		Recipes.initRecipes();
 		
 		PacketHandler.instance().init();
-		keybinds.initKeybindings();
 		quests.initDailyQuests();
 		EventBusHelper.checkBusAndRegister(new EventPlayer());
 		EventBusHelper.checkBusAndRegister(new EventClient());
