@@ -34,7 +34,9 @@ public class PacketRedeem implements IMessageHandler<MessageRedeem, IMessage>
 			}
 			EnumResult result = boxes > 0 ? EnumResult.SUCCESS : EnumResult.FAIL;
 			
-			LuckyCoinsData.get(ctx.getServerHandler().playerEntity).loot_boxes += boxes;
+			LuckyCoinsData data = LuckyCoinsData.get(ctx.getServerHandler().playerEntity);
+			data.loot_boxes += boxes;
+			data.used_loot_box_codes += boxes;
 			
 			PlayerUtils.print(ctx.getServerHandler().playerEntity, 
 					result == EnumResult.SUCCESS

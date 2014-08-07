@@ -15,6 +15,7 @@ public class LuckyCoinsData implements IExtendedEntityProperties
 	public DailyQuestData dailyData;
 	public int loot_boxes;
 	public int coins;
+	public int used_loot_box_codes;
 	public boolean read_welcome_message;
 	public boolean the_legend;
 	
@@ -25,6 +26,7 @@ public class LuckyCoinsData implements IExtendedEntityProperties
 		this.loot_boxes = 0;
 		this.coins = 0;
 		this.read_welcome_message = false;
+		this.used_loot_box_codes = 0;
 		this.dailyData = new DailyQuestData(LuckyCoins.quests.getCurrentDailyQuest());
 		this.the_legend = false;
 	}
@@ -35,6 +37,7 @@ public class LuckyCoinsData implements IExtendedEntityProperties
 		NBTTagCompound data = tag.getCompoundTag(Refs.MOD_ID);
 		this.loot_boxes = data.getInteger("LootBoxes");
 		this.coins = data.getInteger("Coins");
+		this.used_loot_box_codes = data.getInteger("UsedLootBoxCodes");
 		this.read_welcome_message = data.getBoolean("ReadWelcomeMessage");
 		this.the_legend = data.getBoolean("TheLegend-DontEvenTryToModifyThisSucker");
 		
@@ -48,6 +51,7 @@ public class LuckyCoinsData implements IExtendedEntityProperties
 		NBTTagCompound data = new NBTTagCompound();
 		data.setInteger("LootBoxes", loot_boxes);
 		data.setInteger("Coins", coins);
+		data.setInteger("UsedLootBoxCodes", used_loot_box_codes);
 		data.setBoolean("ReadWelcomeMessage", read_welcome_message);
 		tag.setTag(Refs.MOD_ID, data);
 		tag.setBoolean("TheLegend-DontEvenTryToModifyThisSucker", the_legend);
