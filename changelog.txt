@@ -4,6 +4,9 @@
 3. Minor: important changes to a mod
 4. Build: Whenever the mod is built by ForgeGradle (IDE builds don't count). Also independent from the other ones
 
+a1.0-9 (2014/08/07 14:31 GMT+0)
+- Fixed server crash (NullPointerException) when a player logs in and daily quest changes (keybindings.. AGAIN)
+
 a1.0-8 (2014/08/07 13:54 GMT+0)
 - Player information now stores an amount of boxes that was acquired by codes (in case of overhaul)
 
