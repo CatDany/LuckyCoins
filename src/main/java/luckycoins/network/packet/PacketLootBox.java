@@ -21,7 +21,7 @@ public class PacketLootBox implements IMessageHandler<MessageLootBox, IMessage>
 		{
 			EntityPlayer player = ctx.getServerHandler().playerEntity;
 			LuckyCoinsData data = LuckyCoinsData.get(player);
-			if (data.loot_boxes > 1)
+			if (data.loot_boxes > 0)
 			{
 				spawnDroppedCoin(player, 0.9, 0.9);
 				spawnDroppedCoin(player, -0.9, 0.9);
