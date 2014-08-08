@@ -8,7 +8,9 @@ import luckycoins.core.LuckyCoinsData;
 import luckycoins.misc.ModPotions;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
 import org.lwjgl.input.Keyboard;
 
@@ -90,6 +92,34 @@ public class EventPlayer
 			data.dailyData = new DailyQuestData(LuckyCoins.quests.getCurrentDailyQuest());
 			PlayerUtils.print(e.player, Paragraph.gold + MessageRefs.DAILY_QUEST_CHANGED_1);
 			PlayerUtils.print(e.player, Paragraph.gold + String.format(MessageRefs.DAILY_QUEST_CHANGED_2, "END"));
+		}
+	}
+	
+	@SubscribeEvent
+	public void playerDeath(LivingDeathEvent e)
+	{
+		if (e.entity == null || e.entity.worldObj == null || e.entity.worldObj.isRemote)
+		{
+			return;
+		}
+		
+		if (e.entity instanceof EntityPlayer)
+		{
+			LuckyCoinsData.saveTempData((EntityPlayer)e.entity);
+		}
+	}
+	
+	@SubscribeEvent
+	public void playerRespawn(EntityJoinWorldEvent e)
+	{
+		if (e.entity == null || e.entity.worldObj == null || e.entity.worldObj.isRemote)
+		{
+			return;
+		}
+		
+		if (e.entity instanceof EntityPlayer)
+		{
+			LuckyCoinsData.restoreTempData((EntityPlayer)e.entity);
 		}
 	}
 	

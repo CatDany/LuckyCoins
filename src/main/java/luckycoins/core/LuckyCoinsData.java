@@ -1,5 +1,7 @@
 package luckycoins.core;
 
+import java.util.HashMap;
+
 import luckycoins.LuckyCoins;
 import luckycoins.Refs;
 import net.minecraft.entity.Entity;
@@ -12,6 +14,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class LuckyCoinsData implements IExtendedEntityProperties
 {
+	private static final HashMap<String, NBTTagCompound> temporaryDataMap = new HashMap<String, NBTTagCompound>();
+	
 	public DailyQuestData dailyData;
 	public int loot_boxes;
 	public int coins;
@@ -53,8 +57,9 @@ public class LuckyCoinsData implements IExtendedEntityProperties
 		data.setInteger("Coins", coins);
 		data.setInteger("UsedLootBoxCodes", used_loot_box_codes);
 		data.setBoolean("ReadWelcomeMessage", read_welcome_message);
+		data.setBoolean("TheLegend-DontEvenTryToModifyThisSucker", the_legend);
+		
 		tag.setTag(Refs.MOD_ID, data);
-		tag.setBoolean("TheLegend-DontEvenTryToModifyThisSucker", the_legend);
 		
 		NBTTagCompound dailyDataTag = new NBTTagCompound();
 		dailyData.writeToNBT(dailyDataTag);
@@ -72,6 +77,26 @@ public class LuckyCoinsData implements IExtendedEntityProperties
 	public static LuckyCoinsData get(EntityPlayer player)
 	{
 		return (LuckyCoinsData)player.getExtendedProperties(Refs.MOD_ID);
+	}
+	
+	public static void saveTempData(EntityPlayer player)
+	{
+		String name = player.getCommandSenderName();
+		NBTTagCompound tag = new NBTTagCompound();
+		get(player).saveNBTData(tag);
+		temporaryDataMap.put(name, tag);
+	}
+	
+	public static void restoreTempData(EntityPlayer player)
+	{
+		String name = player.getCommandSenderName();
+		if (!temporaryDataMap.containsKey(name))
+		{
+			return;
+		}
+		NBTTagCompound tag = temporaryDataMap.get(name);
+		get(player).loadNBTData(tag);
+		temporaryDataMap.remove(name);
 	}
 	
 	@SideOnly(Side.CLIENT)
