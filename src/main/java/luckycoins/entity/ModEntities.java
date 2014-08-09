@@ -8,5 +8,6 @@ public class ModEntities
 	public static void initEntities()
 	{
 		EntityRegistry.registerModEntity(EntityProjectile.class, "EntityProjectile", EntityRegistry.findGlobalUniqueEntityId(), LuckyCoins.instance, 80, 3, true);
+		//EntityRegistry.registerModEntity(EntityEnderp.class, "EntityEnderp", EntityRegistry.findGlobalUniqueEntityId(), LuckyCoins.instance, 80, 3, true);
 	}
 }

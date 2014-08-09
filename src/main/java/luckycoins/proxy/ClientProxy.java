@@ -3,7 +3,10 @@ package luckycoins.proxy;
 import luckycoins.LuckyCoins;
 import luckycoins.core.DailyQuest;
 import luckycoins.core.LuckyCoinsData;
+import luckycoins.entity.EntityEnderp;
 import luckycoins.misc.KeybindHandler;
+import luckycoins.render.RenderEnderp;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -26,6 +29,8 @@ public class ClientProxy implements IProxy
 	{
 		LuckyCoins.keybinds = new KeybindHandler();
 		LuckyCoins.keybinds.initKeybindings();
+		
+		//RenderingRegistry.registerEntityRenderingHandler(EntityEnderp.class, new RenderEnderp());
 	}
 	
 	@Override

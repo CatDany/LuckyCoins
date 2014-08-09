@@ -2,6 +2,7 @@ package luckycoins.network.packet;
 
 import io.netty.buffer.ByteBuf;
 import luckycoins.core.LuckyCoinsData;
+import luckycoins.entity.EntityEnderp;
 import luckycoins.network.PacketHandler;
 import luckycoins.network.packet.PacketBuyBox.MessageBuyBox;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
