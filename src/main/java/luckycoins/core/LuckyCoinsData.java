@@ -76,7 +76,16 @@ public class LuckyCoinsData implements IExtendedEntityProperties
 	
 	public static LuckyCoinsData get(EntityPlayer player)
 	{
-		return (LuckyCoinsData)player.getExtendedProperties(Refs.MOD_ID);
+		try
+		{
+			return (LuckyCoinsData)player.getExtendedProperties(Refs.MOD_ID);
+		}
+		catch (Throwable t)
+		{
+			LuckyCoins.logger.warn("Unable to get extended properties of entity: " + (player == null ? "null" : player.toString()));
+			LuckyCoins.logger.catching(t);
+			return new LuckyCoinsData(null);
+		}
 	}
 	
 	public static void saveTempData(EntityPlayer player)

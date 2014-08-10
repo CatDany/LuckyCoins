@@ -4,6 +4,9 @@
 3. Minor: important changes to a mod
 4. Build: Whenever the mod is built by ForgeGradle (IDE builds don't count). Also independent from the other ones
 
+a1.0-12 (2014/08/10 16:24 GMT+0)
+- Fixed: NullPointerException on LuckyCoinsData.get(...)
+
 a1.0-11 (2014/08/08 13:55 GMT+0)
 - Fixed: latest loot box cannot be opened
 
