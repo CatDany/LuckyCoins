@@ -127,7 +127,7 @@ public class EventDailyQuests
 		
 		if (e.action == Action.RIGHT_CLICK_BLOCK)
 		{
-			if (e.world.getBlock(e.x, e.y, e.z) instanceof BlockCake)
+			if (e.world.getBlock(e.x, e.y, e.z) instanceof BlockCake && e.entityPlayer.getFoodStats().getFoodLevel() < 20)
 			{
 				LuckyCoins.quests.triggerDailyQuest(e.entityPlayer, DailyQuest.EAT_CAKE, 1);
 			}

@@ -6,7 +6,6 @@ import luckycoins.LuckyCoins;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.StatCollector;
 
-@Deprecated
 public class ThreadDisableGuiButton extends Thread
 {
 	private GuiButton button;
@@ -15,7 +14,6 @@ public class ThreadDisableGuiButton extends Thread
 	public ThreadDisableGuiButton(GuiButton button, int millis)
 	{
 		setDaemon(true);
-		setPriority(MIN_PRIORITY);
 		this.button = button;
 		this.millis = millis;
 	}
@@ -23,11 +21,7 @@ public class ThreadDisableGuiButton extends Thread
 	@Override
 	public void run()
 	{
-		super.run();
 		button.enabled = false;
-		String oldLabel = button.displayString;
-		String waitLabel = StatCollector.translateToLocal("gui.wait");
-		button.displayString = waitLabel;
 		try
 		{
 			sleep(millis);
@@ -38,7 +32,6 @@ public class ThreadDisableGuiButton extends Thread
 			LuckyCoins.logger.warn(String.format("Additional Data: {\"millis\"=%s}", millis));
 			LuckyCoins.logger.catching(t);
 		}
-		button.displayString = oldLabel;
 		button.enabled = true;
 	}
 }

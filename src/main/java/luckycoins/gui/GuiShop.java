@@ -19,20 +19,27 @@ import luckycoins.network.packet.PacketDataSync;
 
 public class GuiShop extends ModGui
 {
+	private GuiButton[] unused = new GuiButton[]
+			{
+				new GuiButton(1, width / 2 - 83, 102, 120, 20, String.format("<unused>", 2)),
+				new GuiButton(2, width / 2 - 83, 124, 120, 20, String.format("<unused>", 10)),
+				new GuiButton(3, width / 2 - 83, 146, 120, 20, String.format("<unused>", 25))
+			};
+	
 	@Override
 	public void initGui()
 	{
 		super.initGui();
-		buttonList.clear();
 		buttonList.add(new GuiButton(0, width / 2 - 83, 80, 120, 20, String.format(GuiRefs.BUY_ONE, 1)));
-		buttonList.add(new GuiButton(1, width / 2 - 83, 102, 120, 20, String.format("<unused>", 2)));
-		buttonList.add(new GuiButton(2, width / 2 - 83, 124, 120, 20, String.format("<unused>", 10)));
-		buttonList.add(new GuiButton(3, width / 2 - 83, 146, 120, 20, String.format("<unused>", 25)));
+		buttonList.add(unused[0]);
+		buttonList.add(unused[1]);
+		buttonList.add(unused[2]);
 		buttonList.add(new GuiButton(4, width / 2 - 83, 168, 120, 20, String.format(GuiRefs.GET_FREE_LOOT_BOXES, 25)));
 		buttonList.add(new GuiButton(5, width / 2 + 40, 168, 54, 20, GuiRefs.BACK));
-		((GuiButton)buttonList.get(1)).enabled = false;
-		((GuiButton)buttonList.get(2)).enabled = false;
-		((GuiButton)buttonList.get(3)).enabled = false;
+		for (GuiButton i : unused)
+		{
+			i.enabled = false;
+		}
 	}
 	
 	@Override

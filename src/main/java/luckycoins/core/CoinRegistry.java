@@ -542,11 +542,6 @@ public class CoinRegistry
 				MovingObjectPosition mop)
 		{
 			CoinHelper.applyPotionEffect(player, Potion.field_76434_w, 3 * 60 * 20, 0, true);
-			EntityEnderp e = new EntityEnderp(world);
-			e.posX = player.posX;
-			e.posY = player.posY;
-			e.posZ = player.posZ;
-			world.spawnEntityInWorld(e);
 			return true;
 		}
 	}

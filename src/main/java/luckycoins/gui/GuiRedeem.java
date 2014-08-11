@@ -24,7 +24,6 @@ public class GuiRedeem extends ModGui
 	{
 		super.initGui();
 		Keyboard.enableRepeatEvents(true);
-		buttonList.clear();
 		buttonList.add(new GuiButton(0, width / 2 - 70, 130, 140, 20, GuiRefs.REDEEM));
 		buttonList.add(new GuiButton(1, width / 2 - 70, 160, 140, 20, GuiRefs.BACK));
 		this.field = new GuiTextField(fontRendererObj, width / 2 - 64, 90, 128, 10);

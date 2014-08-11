@@ -4,6 +4,11 @@
 3. Minor: important changes to a mod
 4. Build: Whenever the mod is built by ForgeGradle (IDE builds don't count). Also independent from the other ones
 
+a1.0-13 (2014/08/11 1:10 GMT+0)
+- Added Patreon button to LuckyCoins GUIs
+- "EAT_CAKE" daily quest doesn't trigger if a player didn't actually eat the cake.
+- Fixed: "Shields Up" coin crashes the entire thing
+
 a1.0-12 (2014/08/10 16:24 GMT+0)
 - Fixed: NullPointerException on LuckyCoinsData.get(...)
 

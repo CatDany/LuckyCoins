@@ -22,7 +22,6 @@ public class GuiMain extends ModGui
 	public void initGui()
 	{
 		super.initGui();
-		buttonList.clear();
 		buttonList.add(new GuiButton(0, width / 2 - 70, 80, 140, 20, GuiRefs.OPEN_LOOT_BOXES));
 		buttonList.add(new GuiButton(1, width / 2 - 70, 110, 140, 20, GuiRefs.SHOP));
 		buttonList.add(new GuiButton(2, width / 2 - 70, 140, 140, 20, GuiRefs.REDEEM_CODE));

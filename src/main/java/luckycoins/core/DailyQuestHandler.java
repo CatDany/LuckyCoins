@@ -24,6 +24,12 @@ public class DailyQuestHandler
 		return getQuest(index);
 	}
 	
+	public boolean canTriggerDailyQuest(EntityPlayer player, DailyQuest daily)
+	{
+		LuckyCoinsData data = LuckyCoinsData.get(player);
+		return data.dailyData.daily == daily && !data.dailyData.got_reward;
+	}
+	
 	public void triggerDailyQuest(EntityPlayer player, DailyQuest daily, int amount)
 	{
 		LuckyCoinsData data = LuckyCoinsData.get(player);
